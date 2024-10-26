@@ -1,12 +1,11 @@
-const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+const body = document.querySelector("body"),
+	 modeToggle = body.querySelector(".mode-toggle"),
+	 sidebar = body.querySelector("nav");
+	 sidebarToggle = body.querySelector(".sidebar-toggle");
 
-allSideMenu.forEach(item=> {
-	const li = item.parentElement;
-
-	item.addEventListener('click', function () {
-		allSideMenu.forEach(i=> {
-			i.parentElement.classList.remove('active');
-		})
-		li.classList.add('active');
-	})
+modeToggle.addEventListener("click", () =>{
+	body.classList.toggle("dark");
 });
+sidebarToggle.addEventListener("click", () =>{
+	sidebar.classList.toggle("close");
+})

@@ -1,70 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <title>Homepage</title>
-        <link rel="stylesheet" href="dashboard.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="dashboard.css">
+       <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"> 
+       <title>Dashboard</title>
     </head>
     <body>
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><a href="#" class="logo"><span>MyFitnessTracker</span></a></li>
+        <nav>
+            <div class="logo-name">
+                <span class="logo_name">MyFitnessTracker</span>
+            </div>
+
+            <div class="menu-items">
+                <ul class="nav-links">
                     <li>
                         <a href="#">
-                            <i class="fa-solid fa-chart-simple"></i>
-                            <span class="nav-item">Dashboard</span>
+                            <i class="uil uil-estate"></i>
+                            <span class="link-name">Dashboard</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa-solid fa-dumbbell"></i>
-                            <span class="nav-item">Workouts</span>
+                            <i class="uil uil-crockery"></i>
+                            <span class="link-name">Meals</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa-solid fa-bowl-food"></i>
-                            <span class="nav-item">My Meals</span>
+                            <i class="uil uil-dumbbell"></i>
+                            <span class="link-name">Workout</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa-solid fa-cookie-bite"></i>
-                            <span class="nav-item">My Foods</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-weight-scale"></i>
-                            <span class="nav-item">My Progress</span>
+                            <i class="uil uil-estate"></i>
+                            <span class="link-name">Analytics</span>
                         </a>
                     </li>
                 </ul>
-            </nav>
-            <section class="main">
-                <div class="main-top">
-                      <h1>Today</h1>
+                <ul class="logout-mode">
+                    <li>
+                        <a href="#">
+                            <i class="uil uil-signout"></i>
+                            <span class="link-name">Logout</span>
+                        </a>
+                    </li>
+                    <li class="mode">
+                        <a href="#">
+                            <i class="uil uil-moon"></i>
+                            <span class="link-name">Dark Mode</span>
+                        </a>
+                        <div class="mode-toggle">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <section class="dashboard">
+            <div class="top">
+                <i class="uil uil-bars sidebar-toggle"></i>
+
+                <div class="search-box">
+                    <i class="uil uil-search"></i>
+                    <input type="text" class="text" placeholder="Search here....">
                 </div>
-                <div class="main-today">
-                    <div class="kilojoules">
-                        <h3>Kilojoules </h3>
-                        <p1>11 000 Remaining</p1>
-                    </div>
-                    <div class="kilojoules">
-                        <h3>Macros </h3>
-                        <p1>Carbs : 10g</p1><br>
-                        <p1>Fats : 10g</p1><br>
-                        <p1>Protein : 10g</p1>
-                    </div>
-                    <div class="kilojoules">
-                        <h3>Water Intake </h3>
-                        <p1>1000 ml Remaining</p1>
-                    </div>
-                </div>
-            </section>
-        </div>
-        
+            </div>
+        </section>
+        <script src="script.js"></script>
     </body>
 </html>
