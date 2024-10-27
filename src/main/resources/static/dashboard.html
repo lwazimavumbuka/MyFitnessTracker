@@ -68,8 +68,87 @@
                     <i class="uil uil-search"></i>
                     <input type="text" class="text" placeholder="Search here....">
                 </div>
+
+                <img src="images/profile.jpg" alt="">
+            </div>
+            <div class="dash-content">
+                <div class="overview">
+                    <div class="title">
+                        <i class="uil uil-tachometer-fast-alt"></i>
+                        <span class="text">Today</span>
+                    </div>
+
+                    <div class="boxes">
+                        <div class="box box1"> 
+                            <div class="icon-text">
+                                <i class="uil uil-bolt"></i>
+                                <span class="text">Kilojoules</span>
+                            </div>
+                            <div class="skill">
+                                <div class="outer">
+                                    <div class="inner">
+                                        <div id="number">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                                    <defs>
+                                       <linearGradient id="GradientColor">
+                                          <stop offset="0%" stop-color="#e91e63" />
+                                          <stop offset="100%" stop-color="#673ab7" />
+                                       </linearGradient>
+                                    </defs>
+                                    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="box box2">
+                            <div class="icon-text">
+                                <i class="uil uil-chart-pie"></i>
+                                <span class="text">Macros</span>
+                            </div>
+                            <div class="mymacros">
+                                <li><span>Protein</span>
+                                    <span class="bar">
+                                        <span class="protein"></span>
+                                    </span>
+                                </li>
+                                <li><span>Carbohydrates</span>
+                                    <span class="bar">
+                                        <span class="carbs"></span>
+                                    </span>
+                                </li>
+                                <li><span>Fats</span>
+                                    <span class="bar">
+                                        <span class="fats"></span>
+                                    </span>
+                                </li>
+                            </div>
+                            
+                        </div>
+                        <div class="box box3">
+                            <i class="uil uil-weight"></i>
+                            <span class="text">Weight Goal</span>
+                            <span class="number">85 kg</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+        <script>
+            let number = document.getElementById("number");
+            let counter = 0;
+            setInterval(() => {
+	            if(counter == 11200){
+		            clearInterval();
+	            }else{
+		            counter += 100;
+		            number.innerHTML = counter + " Kj";
+		        }
+            }, 50);
+        </script>
         <script src="script.js"></script>
     </body>
 </html>

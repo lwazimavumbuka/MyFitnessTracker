@@ -9,3 +9,4 @@ modeToggle.addEventListener("click", () =>{
 sidebarToggle.addEventListener("click", () =>{
 	sidebar.classList.toggle("close");
 })
+

@@ -17,6 +17,7 @@
     --box2-color: #FFE6AC;
     --box3-color: #E7D1FC;
     --title-icon-color: #fff;
+    --background2-color: #DADADA;
 
     /* ====== Transition === = */ 
     --tran-05: all 0.5s ease;
@@ -94,6 +95,9 @@ nav .menu-items{
     border-radius: 50%;
     background-color: var(--primary-color);
 }
+body.dark li a:hover:before{
+    background-color: var(--text-color);
+}
 .menu-items li a i{
     font-size: 24px;
     min-width: 45px;
@@ -116,6 +120,10 @@ nav.close li a .link-name{
 .nav-links li a:hover i,
 .nav-links li a:hover .link-name{
     color: var(--primary-color);
+}
+body.dark .nav-links li a:hover i,
+body.dark .nav-links li a:hover .link-name{
+    color: var(--text-color);
 }
 .menu-items .logout-mode{
     padding-top: 10px;
@@ -193,4 +201,197 @@ nav.close ~ .dashboard .top{
     font: 26px;
     color: var(--text-color);
     cursor: pointer;
+}
+.dashboard .top .search-box{
+    position: relative;
+    height: 45px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 30px;
+}
+.dashboard .top .search-box input{ 
+    position: absolute; 
+    border: 1px solid var(--border-color); 
+    background-color: var(--panel-color); 
+    padding: 0 25px 0 50px;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 400;
+    outline: none;
+}
+.dashboard .top .search-box i{
+    position: absolute; 
+    left: 15px;
+    z-index: 10;
+    font-size: 22px;
+    top: 50%; 
+    transform: translateY(-50%);
+    color: var(--black-light-color);
+}
+.top img{
+    width: 30px;
+    border-radius: 50%;
+}
+.dashboard .dash-content{
+    padding-top: 10px;
+}
+.dash-content .title{
+    display: flex;
+    align-items: center;
+    margin: 72px 0 30px 0;
+}
+.dash-content .title i{
+    position: relative;
+    height: 35px;
+    width: 35px; 
+    background-color: var(--primary-color); 
+    border-radius: 6px; 
+    color: var(--title-icon-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+.dash-content .title .text{
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+.dash-content .boxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dash-content .boxes .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    width: calc(100% / 3 - 15px);
+    padding: 15px 20px;
+    background-color: var(--panel-color);
+    box-shadow: 2px 4px 3px grey;
+    border: 1px solid var(--border-color);
+}
+.box .icon-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.box .text{
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color)
+}
+.box i {
+    font-size: 35px;
+    color: var(--text-color);
+}
+.dash-content .boxes .box .skill{
+    width: 160px;
+    height: 160px;
+    position: relative;
+}
+.dash-content .boxes .box .skill .outer{
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    padding: 20px;
+    box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15), -6px 6px 10px -1px rgba(255, 255, 255,0.7)
+}
+.dash-content .boxes .box .skill .inner{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items:  center;
+    justify-content: center;
+    box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+                    inset -4px 4px 6px -1px rgba(255,255,255,0.7),
+                    -0.5px -0.5px 0px rgba(255,255,255,1),
+                    0.5px 0.5px 0px rgba(0,0,0,0.15), 
+                    0px 12px 10px 10px rgba(0,0,0,0.05);
+}
+.dash-content .boxes .box .skill svg circle{
+    fill: none;
+    stroke: blue;
+    stroke-width: 20px;
+    stroke-dasharray: 439.82;
+    stroke-dashoffset: 439.82;
+    animation: anim 2s linear forwards;
+}
+.dash-content .boxes .box .skill svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.dash-content .boxes .box .skill .inner .number{
+   font-weight: 350;
+   color: var(--text-color); 
+}
+@keyframes anim{
+    100%{
+        stroke-dashoffset: 165;
+    }
+}
+.dash-content .boxes .box .mymacros li {
+    list-style-type: none;
+}
+.mymacros .protein,
+.mymacros .carbs,
+.mymacros .fats {
+    height: 100%; 
+}
+
+.dash-content .boxes .box .mymacros .bar{
+    display: block;
+    height: 20px;
+    border: 1px solid blue;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.dash-content .boxes .box .mymacros .bar span{
+    height: 20px;
+    float: left;
+    background: #0E4BF1;
+}
+.dash-content .boxes .box .mymacros .bar .protein{
+    width: 90%;
+    animation: protein 3s;
+}
+.dash-content .boxes .box .mymacros .bar .carbs{
+    width: 50%;
+    animation: carbs 3s;
+}
+.dash-content .boxes .box .mymacros .bar .fats{
+    width: 30%;
+    animation: fats 3s;
+}
+@keyframes protein{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 90%;
+    }
+}
+@keyframes carbs{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 50%;
+    }
+}@keyframes fats{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 30%;
+    }
 }
