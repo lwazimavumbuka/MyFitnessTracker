@@ -171,7 +171,7 @@ body.dark .switch:before{
 .dashboard{
     position: relative;
     left: 250px;
-    background-color: var(--panel-color);
+    background-color: #F4F5F9;
     min-height: 100vh;
     width: calc(100% - 250px);
     padding: 10px 14px;
@@ -190,7 +190,7 @@ nav.close ~ .dashboard{
     justify-content: space-between;
     align-items: center;
     padding: 10px 14px;
-    background-color: var(--panel-color);
+    background-color: #F4F5F9;
     transition: var(--tran-05);
 }
 nav.close ~ .dashboard .top{
@@ -274,17 +274,23 @@ nav.close ~ .dashboard .top{
     width: calc(100% / 3 - 15px);
     padding: 15px 20px;
     background-color: var(--panel-color);
-    box-shadow: 2px 4px 3px grey;
+   /* box-shadow: 2px 4px 3px grey;*/
     border: 1px solid var(--border-color);
 }
 .box .icon-text {
     display: flex;
-    align-items: center;
     gap: 5px;
+    align-items: center;
 }
 .box .text{
     white-space: nowrap;
     font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color)
+}
+.box .weight-number{
+    white-space: nowrap;
+    font-size: 60px;
     font-weight: 500;
     color: var(--text-color)
 }
@@ -293,39 +299,45 @@ nav.close ~ .dashboard .top{
     color: var(--text-color);
 }
 .dash-content .boxes .box .skill{
-    width: 160px;
-    height: 160px;
+    /*Start here*/
+    width: 120px;
+    height: 120px;
     position: relative;
 }
 .dash-content .boxes .box .skill .outer{
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    padding: 20px;
-    box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15), -6px 6px 10px -1px rgba(255, 255, 255,0.7)
-}
-.dash-content .boxes .box .skill .inner{
     height: 120px;
     width: 120px;
+    border-radius: 50%;
+    padding: 15px;
+    /*box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15), -6px 6px 10px -1px rgba(255, 255, 255,0.7)*/
+}
+.dash-content .boxes .box .skill .inner{
+    height: 90px;
+    width: 90px;
     border-radius: 50%;
     display: flex;
     align-items:  center;
     justify-content: center;
-    box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+   /* box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
                     inset -4px 4px 6px -1px rgba(255,255,255,0.7),
                     -0.5px -0.5px 0px rgba(255,255,255,1),
                     0.5px 0.5px 0px rgba(0,0,0,0.15), 
-                    0px 12px 10px 10px rgba(0,0,0,0.05);
+                    0px 12px 10px 10px rgba(0,0,0,0.05);*/
 }
 .dash-content .boxes .box .skill svg circle{
+    cx: 60;
+    cy: 60;
+    r: 50;
     fill: none;
     stroke: blue;
-    stroke-width: 20px;
+    stroke-width: 15px;
     stroke-dasharray: 439.82;
     stroke-dashoffset: 439.82;
     animation: anim 2s linear forwards;
 }
 .dash-content .boxes .box .skill svg{
+    width: 120;
+    height: 120;
     position: absolute;
     top: 0;
     left: 0;
@@ -339,36 +351,45 @@ nav.close ~ .dashboard .top{
         stroke-dashoffset: 165;
     }
 }
-.dash-content .boxes .box .mymacros li {
+.dash-content .boxes .box .mymacros-text .mymacros li {
     list-style-type: none;
+    align-items: flex-start;
 }
-.mymacros .protein,
-.mymacros .carbs,
-.mymacros .fats {
+.dash-content .boxes .box .mymacros-text{
+    /*I started here*/
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;    
+}
+.dash-content .boxes .box .mymacros-text .mymacros .protein,
+.dash-content .boxes .box .mymacros-text .mymacros .carbs,
+.dash-content .boxes .box .mymacros-text .mymacros .fats {
     height: 100%; 
 }
 
-.dash-content .boxes .box .mymacros .bar{
+.dash-content .boxes .box .mymacros-text .mymacros .bar{
     display: block;
-    height: 20px;
+    height: 17px;
     border: 1px solid blue;
     border-radius: 10px;
     overflow: hidden;
+    width: 280px;
 }
-.dash-content .boxes .box .mymacros .bar span{
+.dash-content .boxes .box .mymacros-text .mymacros .bar span{
     height: 20px;
     float: left;
     background: #0E4BF1;
 }
-.dash-content .boxes .box .mymacros .bar .protein{
+.dash-content .boxes .box .mymacros-text .mymacros .bar .protein{
     width: 90%;
     animation: protein 3s;
 }
-.dash-content .boxes .box .mymacros .bar .carbs{
+.dash-content .boxes .box .mymacros-text .mymacros .bar .carbs{
     width: 50%;
     animation: carbs 3s;
 }
-.dash-content .boxes .box .mymacros .bar .fats{
+.dash-content .boxes .box .mymacros-text .mymacros .bar .fats{
     width: 30%;
     animation: fats 3s;
 }
@@ -394,4 +415,57 @@ nav.close ~ .dashboard .top{
     100%{
         width: 30%;
     }
+}
+.dash-content .activity .columns{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dash-content .activity .columns .column {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    width: calc(100% / 2 - 15px);
+    padding: 15px 20px;
+    background-color: var(--panel-color);
+}
+.dash-content .activity .columns .column .icon-text{
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+.column .text{
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+
+}
+.column .btn{
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #007bff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease; 
+}
+.column .btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.dash-content .activity .columns .workout{
+    position: relative;
+    padding: 15px 20px;
+    background-color: #F4F5F9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
