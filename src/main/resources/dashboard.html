@@ -243,7 +243,7 @@
                             <button onclick="addMeal()"> Add Meal</button>
                         </div>
                     </div>
-                    <div class="added-meals">
+                    <div class=added-meals">
                         <div class="title">
                             <i class="uil uil-clock"></i>
                             <span class="text">Upcoming Meals</span>
@@ -316,54 +316,45 @@
 		        }
             }, 50);
 
-            
             let currentMealItems = [];
 
-            function addFoodItem() {
+            function addFoodItem(){
                 const foodSelect = document.getElementById("foodSelect");
                 const foodAmount = document.getElementById("foodAmount");
 
-                if (foodSelect.value && foodAmount.value) {
-                    currentMealItems.push({ item: foodSelect.value, amount: foodAmount.value });
-                    foodSelect.value = "";
-                    foodAmount.value = "";
+                if(foodSelect.value && foodAmount.value){
+                    currentMealItems.push({item:foodSelect.value,value:foodAmount});
+                    foodSelect.value="";
+                    foodAmount.value="";
                     displayMealItems();
-                } else {
-                    alert("Please select a food item and enter an amount.");
+                }
+                else{
+                    alert("Please select a food item and enter amount")
                 }
             }
+            function displayMealItems(){
+                const mealItemsDiv = document.getElementById("nealitems");
+                mealItemsDiv.innerHTML="";
 
-            function displayMealItems() {
-                const mealItemsDiv = document.getElementById("mealitems");
-                mealItemsDiv.innerHTML = ""; 
-
-                currentMealItems.forEach((food, index) => {
+                currentMealItems.forEach((food, index) =>{
                     const itemDiv = document.createElement("div");
-                    itemDiv.textContent = `${food.item}: ${food.amount}g`;
-                    const deleteButton = document.createElement("button");
-                    deleteButton.textContent = "Remove";
-                    deleteButton.onclick = () => removeFoodItem(index);
-                    itemDiv.appendChild(deleteButton);
+                    itemDiv = document.createElement("div");
+                    itemDiv.textContent = '${food.item}:${food.amount}';
                     mealItemsDiv.appendChild(itemDiv);
                 });
             }
-
-            function removeFoodItem(index) {
-                currentMealItems.splice(index, 1); 
-                displayMealItems();
-            }
-            function addMeal() {
-                if (currentMealItems.length === 0) {
-                    alert("No food items added to meal.");
+            function addMeal(){
+                if(currentMealItems.length===0){
+                    alert("No food items added to meal");
                     return;
                 }
-
+                
                 const mealListDiv = document.getElementById("mealList");
                 const mealDiv = document.createElement("div");
 
-                currentMealItems.forEach(food => {
+                currentMealItems.forEach(food =>{
                     const foodDiv = document.createElement("div");
-                    foodDiv.textContent = `${food.item}: ${food.amount}`;
+                    foodDiv.textContent = '${food.item}:${food.amount}';
                     mealDiv.appendChild(foodDiv);
                 });
 
@@ -373,7 +364,6 @@
                 currentMealItems = [];
                 displayMealItems();
             }
-
         </script>
         <script src="script.js"></script>
     </body>
