@@ -279,6 +279,64 @@
     
                     <img src="images/profile.jpg" alt="">
                 </div>
+                <div class="workout-content">
+                    <div class="add-workout">
+                        <div class="title">
+                            <i class="uil uil-tachometer-fast-alt"></i>
+                            <span class="text">Add Workouts</span>
+                        </div>
+                        <div class="workout-splits">
+                            <div class="workout-form">
+                                <div class="split-name">
+                                    <label for="splitname" class="text">Workout Split:</label>
+                                    <input type="text" id="splitname" class="box" placeholder="e.g., Push Day">
+                                </div>
+                                <div class="muscle-group">
+                                    <label for="musclegroup" class="text">Target Muscle Group:</label>
+                                    <select name="musclegroup" id="musclegroup" class="box">
+                                        <option value="">--Select Muscle--</option>
+                                        <option value="Chest">Chest</option>
+                                        <option value="Back">Back</option>
+                                        <option value="Biceps">Biceps</option>
+                                        <option value="Triceps">Triceps</option>
+                                        <option value="Abs">Abs</option>
+                                        <option value="Shoulders">Shoulders</option>
+                                        <option value="Legs">Legs</option>
+                                    </select>
+                                </div>
+                                <div class="exercise-name">
+                                    <label for="exercisename" class="text">Exercise:</label>
+                                    <input type="text" class="box" placeholder="e.g., Bench Press">
+                                </div>
+                                <div class="sets">
+                                    <label for="sets" class="text">Sets:</label>
+                                    <input type="number" class="box" placeholder="Number of Sets">
+                                </div>
+                                <div>
+                                    <label for="reps" class="text">Reps:</label>
+                                    <input type="number" class="box" placeholder="Number of Reps">
+                                </div>
+                                <div class="exercise-btn">
+                                    <button class="addExercise" onclick="addExercise()">Add Exercise</button>
+                                </div>
+                                <div id="exerciseList" class="exerciseList"></div>
+                                <hr>
+                                <div class="workout-btn">
+                                    <button class="addWorkout" onclick="addWorkout()">Add Workout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workouts">
+                        <div class="title">
+                            <i class="uil uil-clock"></i>
+                            <span class="text"> My Workout Splits</span>
+                        </div>  
+                        <div class="workout-list">
+                            <div class="workoutList" id="workoutList"></div>
+                        </div>
+                    </div>
+                </div>
         </div>
         <div id="analytics-section" class="content-section" style="display: none;">
             <section class="dashboard">
