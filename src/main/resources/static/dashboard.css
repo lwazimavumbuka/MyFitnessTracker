@@ -497,4 +497,90 @@ nav.close ~ .dashboard .top{
 }
 .meal-content .meal-form{
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.meal-content .items{
+    width: auto;
+    padding: 15px 20px;
+    border-radius: 12px;
+    background-color: var(--panel-color);
+    border: 1px solid var(--border-color);
+}
+.meal-content .text{
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color)
+}
+.meal-content .meal-form .foodSelect{
+    position: relative;
+    height: 45px;
+    width: 350px;
+    margin: 0 10px;
+
+}
+.meal-content .meal-form .foodAmount{
+    position: relative;
+    height: 45px;
+    width: auto;
+    margin: 0 10px;
+}
+.meal-content .add-item .addFood{
+    position: relative;
+    height: 45px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #007bff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.meal-content .add-items{
+    position: relative;
+    padding: 15px 20px;
+    background-color: #F4F5F9;
+    border-radius: 8px;
+}
+.meal-content .add-items div{
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+.meal-content .add-items .mealitems button{
+    margin: 0 10px;
+    position: relative;
+    height: 30px;
+}
+.meal-content .add-items .mealbtn button{
+    margin-top: 10px;
+    height: 45px;
+    width: 100px;
+    color: #fff;
+    background-color: rgb(98, 205, 98);
+    border: none;
+    border-radius: 5px;
+}
+.meal-content .added-meals .meals-list{
+    width: auto;
+    background-color: var(--panel-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+.meal-content .added-meals .meals-list .mealList div{
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    background-color: #F4F5F9;
+    border-radius: 8px;
+    padding: 10p 0px;
 }

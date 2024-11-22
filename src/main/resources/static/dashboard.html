@@ -228,30 +228,41 @@
                             <i class="uil uil-tachometer-fast-alt"></i>
                             <span class="text">Add Meals</span>
                         </div>
-                        <div class="meal-form">
-                            <label for="foodSelect">Select Food Item</label>
-                            <select id="foodSelect">
-                                <option value="">--Select Food item--</option>
-                                <option value="Oats">Oats</option>
-                                <option value="Rice">Rice</option>
-                                <option value="Chicken Breast">Chicken Breast</option>
-                            </select>
-                            <label for="foodAmount">Amount</label>
-                            <input type="number" id="foodAmount" placeholder="Amount (e.g., grams)">
-                            <button onclick="addFoodItem()">Add Food Item</button>
-                            <div id="mealitems"></div>
-                            <button onclick="addMeal()"> Add Meal</button>
+                        <div class="items">
+                            <div class="meal-form">
+                                <div class="select-food">
+                                    <label class="text" for="foodSelect">Select Food Item</label>
+                                    <select class="foodSelect" id="foodSelect">
+                                        <option value="">--Select Food item--</option>
+                                        <option value="Oats">Oats</option>
+                                        <option value="Rice">Rice</option>
+                                        <option value="Chicken Breast">Chicken Breast</option>
+                                    </select>
+                                </div>
+                                <div class="select-amount">
+                                    <label class="text" for="foodAmount">Amount</label>
+                                    <input class="foodAmount" type="number" id="foodAmount" placeholder="Amount (e.g., grams)">
+                                </div>
+                                <div class="add-item">
+                                    <button class="addFood" onclick="addFoodItem()">Add Food Item</button>
+                                </div>
+                            </div>
+                            <div class="add-items">
+                                <div class="mealitems" id="mealitems"></div>
+                                <div class="mealbtn">
+                                    <button onclick="addMeal()"> Add Meal</button>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                     <div class="added-meals">
                         <div class="title">
                             <i class="uil uil-clock"></i>
                             <span class="text">Upcoming Meals</span>
                         </div>  
-                        <div class="meallist">
-                            <div id="mealList">
-
-                            </div>
+                        <div class="meals-list">
+                            <div class="mealList" id="mealList"></div>
                         </div>
                     </div>
                 </div>
@@ -363,7 +374,7 @@
 
                 currentMealItems.forEach(food => {
                     const foodDiv = document.createElement("div");
-                    foodDiv.textContent = `${food.item}: ${food.amount}`;
+                    foodDiv.textContent = `${food.item}: ${food.amount}g`;
                     mealDiv.appendChild(foodDiv);
                 });
 
