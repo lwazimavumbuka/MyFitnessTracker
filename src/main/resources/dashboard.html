@@ -228,30 +228,41 @@
                             <i class="uil uil-tachometer-fast-alt"></i>
                             <span class="text">Add Meals</span>
                         </div>
-                        <div class="meal-form">
-                            <label for="foodSelect">Select Food Item</label>
-                            <select id="foodSelect">
-                                <option value="">--Select Food item--</option>
-                                <option value="Oats">Oats</option>
-                                <option value="Rice">Rice</option>
-                                <option value="Chicken Breast">Chicken Breast</option>
-                            </select>
-                            <label for="foodAmount">Amount</label>
-                            <input type="number" id="foodAmount" placeholder="Amount (e.g., grams)">
-                            <button onclick="addFoodItem()">Add Food Item</button>
-                            <div id="mealitems"></div>
-                            <button onclick="addMeal()"> Add Meal</button>
+                        <div class="items">
+                            <div class="meal-form">
+                                <div class="select-food">
+                                    <label class="text" for="foodSelect">Select Food Item</label>
+                                    <select class="foodSelect" id="foodSelect">
+                                        <option value="">--Select Food item--</option>
+                                        <option value="Oats">Oats</option>
+                                        <option value="Rice">Rice</option>
+                                        <option value="Chicken Breast">Chicken Breast</option>
+                                    </select>
+                                </div>
+                                <div class="select-amount">
+                                    <label class="text" for="foodAmount">Amount</label>
+                                    <input class="foodAmount" type="number" id="foodAmount" placeholder="Amount (e.g., grams)">
+                                </div>
+                                <div class="add-item">
+                                    <button class="addFood" onclick="addFoodItem()">Add Food Item</button>
+                                </div>
+                            </div>
+                            <div class="add-items">
+                                <div class="mealitems" id="mealitems"></div>
+                                <div class="mealbtn">
+                                    <button onclick="addMeal()"> Add Meal</button>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
-                    <div class=added-meals">
+                    <div class="added-meals">
                         <div class="title">
                             <i class="uil uil-clock"></i>
                             <span class="text">Upcoming Meals</span>
                         </div>  
-                        <div class="meallist">
-                            <div id="mealList">
-
-                            </div>
+                        <div class="meals-list">
+                            <div class="mealList" id="mealList"></div>
                         </div>
                     </div>
                 </div>
@@ -267,6 +278,64 @@
                     </div>
     
                     <img src="images/profile.jpg" alt="">
+                </div>
+                <div class="workout-content">
+                    <div class="add-workout">
+                        <div class="title">
+                            <i class="uil uil-tachometer-fast-alt"></i>
+                            <span class="text">Add Workouts</span>
+                        </div>
+                        <div class="workout-splits">
+                            <div class="workout-form">
+                                <div class="split-name">
+                                    <label for="splitname" class="text">Workout Split:</label>
+                                    <input type="text" id="splitname" class="box" placeholder="e.g., Push Day">
+                                </div>
+                                <div class="muscle-group">
+                                    <label for="musclegroup" class="text">Target Muscle Group:</label>
+                                    <select name="musclegroup" id="musclegroup" class="box">
+                                        <option value="">--Select Muscle--</option>
+                                        <option value="Chest">Chest</option>
+                                        <option value="Back">Back</option>
+                                        <option value="Biceps">Biceps</option>
+                                        <option value="Triceps">Triceps</option>
+                                        <option value="Abs">Abs</option>
+                                        <option value="Shoulders">Shoulders</option>
+                                        <option value="Legs">Legs</option>
+                                    </select>
+                                </div>
+                                <div class="exercise-name">
+                                    <label for="exercisename" class="text">Exercise:</label>
+                                    <input type="text" id="exercisename" class="box" placeholder="e.g., Bench Press">
+                                </div>
+                                <div class="sets">
+                                    <label for="sets" class="text">Sets:</label>
+                                    <input type="number" id="sets" class="box" placeholder="Number of Sets">
+                                </div>
+                                <div>
+                                    <label for="reps" class="text">Reps:</label>
+                                    <input type="number" id="reps" class="box" placeholder="Number of Reps">
+                                </div>
+                                <div class="exercise-btn">
+                                    <button class="addExercise" onclick="addExercise()">Add Exercise</button>
+                                </div>
+                                <div id="exerciseList" class="exerciseList"></div>
+                                <hr>
+                                <div class="workout-btn">
+                                    <button class="addWorkout" onclick="addWorkout()">Add Workout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workouts">
+                        <div class="title">
+                            <i class="uil uil-clock"></i>
+                            <span class="text"> My Workout Splits</span>
+                        </div>  
+                        <div class="workout-list">
+                            <div class="workoutList" id="workoutList"></div>
+                        </div>
+                    </div>
                 </div>
         </div>
         <div id="analytics-section" class="content-section" style="display: none;">
@@ -316,45 +385,54 @@
 		        }
             }, 50);
 
+            
             let currentMealItems = [];
 
-            function addFoodItem(){
+            function addFoodItem() {
                 const foodSelect = document.getElementById("foodSelect");
                 const foodAmount = document.getElementById("foodAmount");
 
-                if(foodSelect.value && foodAmount.value){
-                    currentMealItems.push({item:foodSelect.value,value:foodAmount});
-                    foodSelect.value="";
-                    foodAmount.value="";
+                if (foodSelect.value && foodAmount.value) {
+                    currentMealItems.push({ item: foodSelect.value, amount: foodAmount.value });
+                    foodSelect.value = "";
+                    foodAmount.value = "";
                     displayMealItems();
-                }
-                else{
-                    alert("Please select a food item and enter amount")
+                } else {
+                    alert("Please select a food item and enter an amount.");
                 }
             }
-            function displayMealItems(){
-                const mealItemsDiv = document.getElementById("nealitems");
-                mealItemsDiv.innerHTML="";
 
-                currentMealItems.forEach((food, index) =>{
+            function displayMealItems() {
+                const mealItemsDiv = document.getElementById("mealitems");
+                mealItemsDiv.innerHTML = ""; 
+
+                currentMealItems.forEach((food, index) => {
                     const itemDiv = document.createElement("div");
-                    itemDiv = document.createElement("div");
-                    itemDiv.textContent = '${food.item}:${food.amount}';
+                    itemDiv.textContent = `${food.item}: ${food.amount}g`;
+                    const deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Remove";
+                    deleteButton.onclick = () => removeFoodItem(index);
+                    itemDiv.appendChild(deleteButton);
                     mealItemsDiv.appendChild(itemDiv);
                 });
             }
-            function addMeal(){
-                if(currentMealItems.length===0){
-                    alert("No food items added to meal");
+
+            function removeFoodItem(index) {
+                currentMealItems.splice(index, 1); 
+                displayMealItems();
+            }
+            function addMeal() {
+                if (currentMealItems.length === 0) {
+                    alert("No food items added to meal.");
                     return;
                 }
-                
+
                 const mealListDiv = document.getElementById("mealList");
                 const mealDiv = document.createElement("div");
 
-                currentMealItems.forEach(food =>{
+                currentMealItems.forEach(food => {
                     const foodDiv = document.createElement("div");
-                    foodDiv.textContent = '${food.item}:${food.amount}';
+                    foodDiv.textContent = `${food.item}: ${food.amount}g`;
                     mealDiv.appendChild(foodDiv);
                 });
 
@@ -364,6 +442,53 @@
                 currentMealItems = [];
                 displayMealItems();
             }
+            //adding workouts
+            let currentWorkout = {
+                split: "", 
+                exercises: []
+            };
+            let workoutList = [];
+
+            function addExercise(){
+                const splitName = document.getElementById("splitname").value;
+                const muscleGroup = document.getElementById("musclegroup").value;
+                const exerciseName = document.getElementById("exercisename").value;
+                const sets = document.getElementById("sets").value;
+                const reps = document.getElementById("reps").value;
+
+                if(!splitName || !muscleGroup || !exerciseName || !exerciseName || !sets || !reps){
+                    alert("Please fillout all fields before adding an exercise.")
+                    return;
+                }
+                currentWorkout.split = splitName;
+
+                currentWorkout.exercises.push({
+                    muscleGroup,
+                    exerciseName,
+                    sets,
+                    reps
+                });
+                
+                document.getElementById("musclegreoup").value = "";
+                document.getElementById("exercisename").value = "";
+                document.getElementById("sets").value = "";
+                document.getElementById("reps").value = "";
+
+                displayExercises();
+
+            }
+            function displayExercises(){
+                const exerciseListDiv = document.getElementById("exerciseList");
+                exerciseListDiv.innerHTML = `<h3>${currentWorkout.split} - Exercises</h3>`;
+
+                currentWorkout.exercises.forEach((exercise, index) => {
+                    const exerciseDiv = document.createElement("div");
+                    exerciseDiv.textContent = `${exercise.exerciseName} - ${exercise.muscleGroup}, ${exercise.sets} sets x ${exercise.reps} reps`;
+                    exerciseListDiv.appendChild(exerciseDiv);
+                });
+
+            }
+            
         </script>
         <script src="script.js"></script>
     </body>

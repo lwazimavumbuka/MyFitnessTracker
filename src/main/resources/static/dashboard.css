@@ -469,6 +469,7 @@ nav.close ~ .dashboard .top{
     flex-direction: column;
     gap: 10px;
 }
+/*-----------------------meals-page--------------------------------------------*/
 .dashboard .meal-content{
     padding-top: 10px;
 }
@@ -584,6 +585,7 @@ nav.close ~ .dashboard .top{
     border-radius: 8px;
     padding: 10p 0px;
 }
+/*-----------------workout-section------------------*/
 .dashboard .workout-content{
     padding-top: 10px;
 }
@@ -657,4 +659,105 @@ nav.close ~ .dashboard .top{
     background-color: rgb(98, 205, 98);
     border: none;
     border-radius: 5px;
+}
+.workout-content .workouts .workout-list .workoutList div{
+    width: auto;
+    background-color: var(--panel-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 15px 20px;
+    margin-bottom: 5px;
+}
+/*------------------------------------------goals-section--------------------------------*/
+.dashboard .goals-content{
+    padding-top: 10px;
+}
+.dashboard .goals-content .title{
+    display: flex;
+    align-items: center;
+    margin: 72px 0 30px 0;
+}
+.dashboard .goals-content .title i{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    color: var(--title-icon-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+.goals-content .title .text{
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+.goals-content .weight-box{
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    padding: 15px 20px;
+    border-radius: 12px;
+    background-color: var(--panel-color);
+    border: 1px solid var(--border-color);
+    margin-bottom: 5px;
+
+}
+.goals-content .weight-box .weight{
+    color: #007bff;
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+}
+.weight-box .weight-input{
+    position: relative;
+    height: 32px;
+}
+.weight-box .addWeight{
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #007bff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.goals-content .text{
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color)
+}
+/**-------------------myfoods-section-------------*/
+.dashboard .myfoods-content{
+    padding-top: 10px;
+}
+.dashboard .myfoods-content .title{
+    display: flex;
+    align-items: center;
+    margin: 72px 0 30px 0;
+}
+.dashboard .myfoods-content .title i{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    color: var(--title-icon-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+.myfoods-content .title .text{
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-left: 10px;
 }

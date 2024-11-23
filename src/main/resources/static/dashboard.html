@@ -37,7 +37,13 @@
                     <li>
                         <a href="#">
                             <i class="uil uil-estate"></i>
-                            <span class="link-name">Analytics</span>
+                            <span class="link-name">Goals</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="uil uil-estate"></i>
+                            <span class="link-name">MyFoods</span>
                         </a>
                     </li>
                 </ul>
@@ -266,6 +272,7 @@
                         </div>
                     </div>
                 </div>
+            </section>
         </div>
         <div id="workout-section" class="content-section" style="display: none;">
             <section class="dashboard">
@@ -288,12 +295,12 @@
                         <div class="workout-splits">
                             <div class="workout-form">
                                 <div class="split-name">
-                                    <label for="splitname" class="text">Workout Split:</label>
-                                    <input type="text" id="splitname" class="box" placeholder="e.g., Push Day">
+                                    <label for="splitName" class="text">Workout Split:</label>
+                                    <input type="text" id="splitName" class="box" placeholder="e.g., Push Day">
                                 </div>
                                 <div class="muscle-group">
-                                    <label for="musclegroup" class="text">Target Muscle Group:</label>
-                                    <select name="musclegroup" id="musclegroup" class="box">
+                                    <label for="muscleGroup" class="text">Target Muscle Group:</label>
+                                    <select name="muscleGroup" id="muscleGroup" class="box">
                                         <option value="">--Select Muscle--</option>
                                         <option value="Chest">Chest</option>
                                         <option value="Back">Back</option>
@@ -305,16 +312,16 @@
                                     </select>
                                 </div>
                                 <div class="exercise-name">
-                                    <label for="exercisename" class="text">Exercise:</label>
-                                    <input type="text" class="box" placeholder="e.g., Bench Press">
+                                    <label for="exerciseName" class="text">Exercise:</label>
+                                    <input type="text" id="exerciseName" class="box" placeholder="e.g., Bench Press">
                                 </div>
                                 <div class="sets">
                                     <label for="sets" class="text">Sets:</label>
-                                    <input type="number" class="box" placeholder="Number of Sets">
+                                    <input type="number" id="sets" class="box" placeholder="Number of Sets">
                                 </div>
                                 <div>
                                     <label for="reps" class="text">Reps:</label>
-                                    <input type="number" class="box" placeholder="Number of Reps">
+                                    <input type="number" id="reps" class="box" placeholder="Number of Reps">
                                 </div>
                                 <div class="exercise-btn">
                                     <button class="addExercise" onclick="addExercise()">Add Exercise</button>
@@ -337,8 +344,9 @@
                         </div>
                     </div>
                 </div>
+            </section>
         </div>
-        <div id="analytics-section" class="content-section" style="display: none;">
+        <div id="goals-section" class="content-section" style="display: none;">
             <section class="dashboard">
                 <div class="top">
                     <i class="uil uil-bars sidebar-toggle"></i>
@@ -350,7 +358,119 @@
     
                     <img src="images/profile.jpg" alt="">
                 </div>
+               <div class="goals-content">
+                     <div class="weight-goals">
+                        <div class="title">
+                            <i class="uil uil-tachometer-fast-alt"></i>
+                            <span class="text">Weight Goals</span>
+                        </div>
+                        <div class="weight-box">
+                            <span class="text">Starting Weight</span>
+                            <span class="weight"> 65kg on 22/09/2024</span>
+                        </div>
+                        <div class="weight-box">
+                            <span class="text">Current Weight</span>
+                            <div class="edit-weight">
+                                <span class="weight"> 67kg</span>
+                                <form id="new-weight">
+                                    <input class="weight-input" type="number" placeholder="edit weight">
+                                    <button class="addWeight">Add weight</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="weight-box">
+                            <span class="text">Goal Weight</span>
+                            <div class="edit-weight">
+                                <span class="weight"> 70kg</span>
+                                <form id="new-weight">
+                                    <input class="weight-input" type="number" placeholder="edit weight">
+                                    <button class="addWeight">Add weight</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nutrition-goals">
+                        <div class="title">
+                            <i class="uil uil-tachometer-fast-alt"></i>
+                            <span class="text">Nutrition Goals</span>
+                        </div>
+                        <div class="weight-box">
+                            <span class="text">Kilojoules</span>
+                            <div class="edit-grams">
+                                <span class="weight"> 11200 Kj per day</span>
+                                <form id="new-grams">
+                                    <input class="weight-input" type="number" placeholder="edit grams">
+                                    <button class="addWeight">Add grams</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="weight-box">
+                            <span class="text">Carbohydrates</span>
+                            <div class="edit-grams">
+                                <span class="weight"> 300 g per day</span>
+                                <form id="new-grams">
+                                    <input class="weight-input" type="number" placeholder="edit grams">
+                                    <button class="addWeight">Add grams</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="weight-box">
+                            <span class="text">Protein</span>
+                            <div class="edit-grams">
+                                <span class="weight"> 30 g per day</span>
+                                <form id="new-grams">
+                                    <input class="weight-input" type="number" placeholder="edit grams">
+                                    <button class="addWeight">Add grams</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="weight-box">
+                            <span class="text">Fats</span>
+                            <div class="edit-grams">
+                                <span class="weight"> 30 g per day</span>
+                                <form id="new-grams">
+                                    <input class="weight-input" type="number" placeholder="edit grams">
+                                    <button class="addWeight">Add grams</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
+        <div id="myfoods-section" class="content-section" style="display: none;">
+            <section class="dashboard">
+                <div class="top">
+                    <i class="uil uil-bars sidebar-toggle"></i>
+    
+                    <div class="search-box">
+                        <i class="uil uil-search"></i>
+                        <input type="text" class="text" placeholder="Search here....">
+                    </div>
+    
+                    <img src="images/profile.jpg" alt="">
+                </div>
+                <div class="myfoods-content">
+                    <div class="myfood-list">
+                        <div class="title">
+                            <i class="uil uil-tachometer-fast-alt"></i>
+                            <span class="text">My Food List</span>
+                        </div>
+                        <table>
+                            
+                        </table>
+                    </div>
+                    <div class="log-food">
+                        <div class="title">
+                            <i class="uil uil-tachometer-fast-alt"></i>
+                            <span class="text">Log Food Item</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+        </div>
+        
 
 
         <script>
@@ -358,7 +478,8 @@
                 dashboard: document.getElementById("dashboard-section"),
                 meals: document.getElementById("meals-section"),
                 workout: document.getElementById("workout-section"),
-                analytics: document.getElementById("analytics-section")
+                goals: document.getElementById("goals-section"),
+                myfoods: document.getElementById("myfoods-section")
             };
             function showSection(section) {
                 for (let key in sections) {
@@ -442,7 +563,84 @@
                 currentMealItems = [];
                 displayMealItems();
             }
+            //adding workouts
+            let currentWorkout = {
+                split: "",
+                exercises: []
+            };
+            let workoutList = [];
 
+            function addExercise() {
+                const splitName = document.getElementById("splitName").value;
+                const muscleGroup = document.getElementById("muscleGroup").value;
+                const exerciseName = document.getElementById("exerciseName").value;
+                const sets = document.getElementById("sets").value;
+                const reps = document.getElementById("reps").value;
+
+                if (!splitName || !muscleGroup || !exerciseName || !sets || !reps) {
+                    alert("Please fill out all fields before adding an exercise.");
+                    return;
+                }
+                currentWorkout.split = splitName;
+                currentWorkout.exercises.push({
+                    muscleGroup,
+                    exerciseName,
+                    sets,
+                    reps
+                });
+                document.getElementById("muscleGroup").value = "";
+                document.getElementById("exerciseName").value = "";
+                document.getElementById("sets").value = "";
+                document.getElementById("reps").value = "";
+
+                displayExercises();
+            }
+
+            function displayExercises() {
+                const exerciseListDiv = document.getElementById("exerciseList");
+                exerciseListDiv.innerHTML = `<h3>${currentWorkout.split} - Exercises</h3>`;
+
+                currentWorkout.exercises.forEach((exercise, index) => {
+                    const exerciseDiv = document.createElement("div");
+                    exerciseDiv.textContent = `${exercise.exerciseName} - ${exercise.muscleGroup}, ${exercise.sets} sets x ${exercise.reps} reps`;
+                    exerciseListDiv.appendChild(exerciseDiv);
+                });
+            }
+
+            function addWorkout(){
+                if(currentWorkout.exercises.length === 0){
+                    alert("No exercises added to the workout.");
+                    return;
+                }
+                workoutList.push(currentWorkout);
+
+                currentWorkout = {
+                    split:"",
+                    exercises: []
+                };
+                document.getElementById("splitName").value = "";
+
+                displayWorkoutList();
+
+                document.getElementById("exerciseList").innerHTML = "";
+            }
+
+            function displayWorkoutList(){
+                const historyDiv = document.getElementById("workoutList");
+                historyDiv.innerHTML = "";
+                workoutList.forEach((workout, index) => {
+                    const workoutDiv = document.createElement("div");
+                    workoutDiv.innerHTML = `<h4>${workout.split}</h4>`;
+                    workout.exercises.forEach(exercise => {
+                        const exerciseDiv = document.createElement("div");
+                        exerciseDiv.textContent = `${exercise.exerciseName} - ${exercise.muscleGroup}, ${exercise.sets} sets x ${exercise.reps} reps`;
+                        workoutDiv.appendChild(exerciseDiv);
+                    });
+                    historyDiv.appendChild(workoutDiv);
+                });
+
+            }
+            
         </script>
         <script src="script.js"></script>
     </body>
