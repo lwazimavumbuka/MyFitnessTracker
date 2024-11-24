@@ -456,8 +456,32 @@
                             <i class="uil uil-tachometer-fast-alt"></i>
                             <span class="text">My Food List</span>
                         </div>
-                        <table>
-                            
+                        <table id="FoodTable" class="FoodTable">
+                            <thead>
+                                <tr>
+                                    <th>Food ( per 100 g )</th>
+                                    <th>Kilojoules</th>
+                                    <th>Carbohydrates</th>
+                                    <th>Protein</th>
+                                    <th>Fats</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Oats</td>
+                                    <td>300 Kj</td>
+                                    <td>70 g</td>
+                                    <td>25 g</td>
+                                    <td>15 g</td>
+                                </tr>
+                                <tr>
+                                    <td>Chicken Breast</td>
+                                    <td>300 Kj</td>
+                                    <td>70 g</td>
+                                    <td>25 g</td>
+                                    <td>15 g</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     <div class="log-food">
@@ -465,6 +489,27 @@
                             <i class="uil uil-tachometer-fast-alt"></i>
                             <span class="text">Log Food Item</span>
                         </div>
+                        <form id="log-item" class="log-item">
+                            <div class="food-">
+                                <label for="foodname" class="text">Food Name</label>
+                                <input type="text" class="box" placeholder="e.g., Chicken">
+                            </div>
+                            <div class="food-">
+                                <label for="foodcarbs" class="text">Carbohydrates</label>
+                                <input type="number" class="box" placeholder="Carbs per 100g">
+                            </div>
+                            <div class="food-">
+                                <label for="foodprotein" class="text">Protein</label>
+                                <input type="number" class="box" placeholder="Protein per 100g">
+                            </div>
+                            <div class="food-">
+                                <label for="foodfats" class="text">Fats</label>
+                                <input type="number" class="box" placeholder="Fats per 100g">
+                            </div>
+                            <div class="food-button">
+                                <button type="submit" class="add-item">Add Food</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 

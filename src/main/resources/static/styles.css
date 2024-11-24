@@ -6,7 +6,7 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-body.index-page{
+body .index-page{
     min-height: 100vh;
     background: url('/images/back.jpg') no-repeat;
     background-size: cover;
@@ -70,22 +70,25 @@ header{
     line-height: 25px;
 
 }
-button{
+.content button{
     width: 200px; 
     padding: 15px 0;
     text-align: center; 
     margin: 20px 10px;
     border-radius: 25px; 
     font-weight: bold;
-    border: 2px solid #009688;
+    border: 2px solid #fff;
     background: transparent;
     color: #fff;
     cursor: pointer;
     position: relative;
     overflow: hidden;
 }
-span{
-    background: #009688; 
+.content button:hover{
+    border-color: #007bff;
+}
+.content span{
+    background: #fff; 
     height: 100%;
     width: 0;
     border-radius: 25px;
@@ -95,9 +98,123 @@ span{
     z-index: 1;
     transition: 0.3s;
 }
-button:hover span{
-    width: 100%;
+.login{
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
 }
-button:hover{
+.login .image{
+    width: 50%;
+}
+.image img{
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.login .form-container{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 80%;
+    max-width: 1200px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.login .login-form{
+    justify-content: center;
+    display: flex;
+}
+.form-container .loginform{
+    flex: 1;
+    padding: 50px;
+    min-width: 300px;
+}
+
+.loginform .form-group{
+    padding-right: 200px;
+    margin-bottom: 15px;
+}
+.form-group label, .form-group2 label{
+    display: block;
+    margin-top: 5px;
+}
+.form-group input{
+    height: 45px;
+    width: 250%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.form-group button{
+    width: 250%;
+    height: 45px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-group button:hover{
+    background-color: #025cbd;
+}
+.loginform h1{
+    font-size: 50px;
+    margin-bottom: 10px;
+    font-weight: 600px;
+}
+.register-section{
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    transform:translate(-50%,-50%) scale(1.25);
+    opacity: 0;
+    transition: top 0ms ease-in-out 200ms, 
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+    
+}
+.register-section.active{
+    top: 150%;
+    opacity: 1;
+    transition: top 0ms ease-in-out 0ms, 
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+}
+.form-group2 input{
+    height: 30px;
+    width: 95%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.form-group2 button{
+    width: 95%;
+    height: 30px;
+    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.form-group2 button:hover{
+    background-color: #025cbd;
+}
+.register-section .close-btn{
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;    
 }

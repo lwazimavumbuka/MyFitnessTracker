@@ -456,7 +456,7 @@ nav.close ~ .dashboard .top{
     transition: background-color 0.3s ease; 
 }
 .column .btn:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0056b3; 
 }
 
 .dash-content .activity .columns .workout{
@@ -541,6 +541,9 @@ nav.close ~ .dashboard .top{
     border-radius: 5px;
     text-decoration: none;
 }
+.meal-content .add-item .addFood:hover{
+    background-color: #03376e;
+}
 .meal-content .add-items{
     position: relative;
     padding: 15px 20px;
@@ -567,6 +570,9 @@ nav.close ~ .dashboard .top{
     background-color: rgb(98, 205, 98);
     border: none;
     border-radius: 5px;
+}
+.meal-content .add-items .mealbtn button:hover{
+    background-color: rgb(75, 157, 75);    
 }
 .meal-content .added-meals .meals-list{
     width: auto;
@@ -646,6 +652,9 @@ nav.close ~ .dashboard .top{
     text-decoration: none;
     margin-bottom: 5px;
 }
+.workout-splits .exercise-btn .addExercise:hover{
+    background-color: #03366d; 
+}
 .workout-splits .workout-btn{
     justify-content: center;
     display: flex;
@@ -659,6 +668,9 @@ nav.close ~ .dashboard .top{
     background-color: rgb(98, 205, 98);
     border: none;
     border-radius: 5px;
+}
+.addWorkout:hover{
+    background-color: rgb(73, 137, 73);
 }
 .workout-content .workouts .workout-list .workoutList div{
     width: auto;
@@ -728,6 +740,9 @@ nav.close ~ .dashboard .top{
     border-radius: 5px;
     text-decoration: none;
 }
+.addWeight:hover{
+    background-color: #0056b3; 
+}
 .goals-content .text{
     white-space: nowrap;
     font-size: 18px;
@@ -760,4 +775,65 @@ nav.close ~ .dashboard .top{
     font-weight: 500;
     color: var(--text-color);
     margin-left: 10px;
+}
+.myfoods-content .FoodTable{
+    width: 80%;
+    padding: 15px 20px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+.FoodTable th, .FoodTable td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+.FoodTable th{
+    background-color: #4CAF50;
+    color: white;
+    font: bold;
+}
+.FoodTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.FoodTable tr:hover {
+    background-color: #f1f1f1;
+}
+.myfoods-content .log-item{
+    width: 80%;
+    padding: 15px 20px;
+    margin: 20px auto;
+    border-radius: 12px;
+    background-color: var(--panel-color);
+    border: 1px solid var(--border-color);
+    margin-bottom: 5px;
+
+}
+.log-item .food-{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5px;
+}
+.log-item .box{
+    width: auto;
+    height: 30px;
+}
+.log-item .food-button{
+    justify-content: center;
+    display: flex;
+}
+.food-button .add-item{
+    height: 45px;
+    width: 100px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    color: #FFF;
+    border: none;
+}
+.add-item:hover{
+    background-color: #338435;   
 }
