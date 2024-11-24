@@ -56,9 +56,11 @@
                 </div>    
             </div>    
         </div>
+        <div class="overlay"></div>
         <div class="register-section">
             <button class="close-btn" type="button">&times;</button>
             <div class="form-section">
+                <h2>Register here</h2>
                 <form action="" class="register-form">
                     <div class="form-group2">
                         <label for="username">Username</label>
@@ -102,12 +104,25 @@
             </div>
         </div>
         <script>
-            document.querySelector("#show-signup").addEventListener("click", function(){
-                document.querySelector(".register-section").classList.add("active");
+            const signupButton = document.querySelector("#show-signup");
+            const closeButton = document.querySelector(".close-btn");
+            const registerSection = document.querySelector(".register-section");
+            const overlay = document.querySelector(".overlay");
+            const contentToBlur = document.querySelectorAll(".index-page, .login");
+
+            signupButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                registerSection.classList.add("active");
+                overlay.classList.add("active");
+                contentToBlur.forEach((element) => element.classList.add("blur-effect"));
             });
-            document.querySelector(".close-btn").addEventListener("click", function () {
-                 document.querySelector(".register-section").classList.remove("active");
+
+            closeButton.addEventListener("click", () => {
+                registerSection.classList.remove("active");
+                overlay.classList.remove("active");
+                contentToBlur.forEach((element) => element.classList.remove("blur-effect"));
             });
+
         </script>
     </body>
     
