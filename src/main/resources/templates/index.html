@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
 <html lang="en">
     <head> 
         <meta charset="UTF-8"> 
@@ -35,17 +36,17 @@
             </div>
             <div class="form-container">
                 <div class="login-form">
-                    <form action="" class="loginform">
+                    <form id="/loginform" action="/loginform" method="post" class="loginform">
                         <h1>Hello, Friend</h3>
                         <h2>Sign In</h5>
                         <br>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" class="username" id="username" placeholder="Enter your username">
+                            <input type="text" name="username" class="username" id="username" placeholder="Enter your username">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="password" id="password" placeholder="Enter your username">
+                               <input type="password" name="password" class="password" id="password" placeholder="Enter your password">
                         </div>
                         <div class="form-group">
                             <button type="submit">Login</button>
@@ -61,40 +62,40 @@
             <button class="close-btn" type="button">&times;</button>
             <div class="form-section">
                 <h2>Register here</h2>
-                <form action="" class="register-form">
+                <form action="/registerform" method="post" class="register-form">
                     <div class="form-group2">
                         <label for="username">Username</label>
-                        <input type="text" class="username" id="username" placeholder="Enter your username">
+                        <input type="text" name="username" class="username" id="username" placeholder="Enter your username">
                     </div>
                     <div class="form-group2">
                         <label for="password">Password</label>
-                        <input type="password" class="password" id="password" placeholder="Enter your username">
+                        <input type="password" name="password" class="password" id="password" placeholder="Enter your username">
                     </div>
                     <h5>Enter your weight and nutrition goals. Get your estimates <a href="wwww.calculator.net/macro-calculatot.html">here</a> </h5>
                     
                     <div class="form-group2">
                         <label for="currentweight">Current weight</label>
-                        <input type="number" class="currentweight" id="currentweight" placeholder="Enter your current weight">
+                        <input type="number" name="currentweight" class="currentweight" id="currentweight" placeholder="Enter your current weight">
                     </div>
                     <div class="form-group2">
                         <label for="weightgoal">Weight Goal</label>
-                        <input type="number" class="weightgoal" id="weightgoal" placeholder="Enter your weight goal">
+                        <input type="number" name="weightgoal" class="weightgoal" id="weightgoal" placeholder="Enter your weight goal">
                     </div>
                     <div class="form-group2">
-                        <label for="age">Kilojoules</label>
-                        <input type="number" class="kj" id="kj" placeholder="Enter your kilojoules per day">
+                        <label for="kilojoules">Kilojoules</label>
+                        <input type="number"  name="kilojoules" class="kilojoules" id="kilojoules" placeholder="Enter your kilojoules per day">
                     </div>
                     <div class="form-group2">
                         <label for="protein">Protein</label>
-                        <input type="number" class="protein" id="protein" placeholder="Enter your protein per day">
+                        <input type="number" name="protein" class="protein" id="protein" placeholder="Enter your protein per day">
                     </div>
                     <div class="form-group2">
                         <label for="carbs">Carbohydrates</label>
-                        <input type="number" class="carbs" id="carbs" placeholder="Enter your fats per day">
+                        <input type="number" name="carbs" class="carbs" id="carbs" placeholder="Enter your fats per day">
                     </div>
                     <div class="form-group2">
                         <label for="fats">Fats</label>
-                        <input type="number" class="fats" id="fats" placeholder="Enter your fats per day">
+                        <input type="number" name="fats" class="fats" id="fats" placeholder="Enter your fats per day">
                     </div>
     
                     <div class="form-group2">
