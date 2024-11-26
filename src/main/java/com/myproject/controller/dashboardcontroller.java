@@ -102,4 +102,9 @@ public class DashboardController {
         foodsRepo.save(foods);
         return "redirect:/dashboard?username="+usernameString;
     }
+
+    public String addWorkout(){
+        
+        return "redirect:/dashboard?username"+usernameString;
+    }
 }
