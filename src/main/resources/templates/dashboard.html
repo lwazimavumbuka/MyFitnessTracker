@@ -347,7 +347,7 @@
                 </div>
             </section>
         </div>
-        <div id="goals-section" class="content-section" style="display: none;">
+        <div name="goals-section" id="goals-section" class="content-section" style="display: none;">
             <section class="dashboard">
                 <div class="top">
                     <i class="uil uil-bars sidebar-toggle"></i>
@@ -383,8 +383,8 @@
                             <span class="text">Goal Weight</span>
                             <div class="edit-weight">
                                 <span th:text="${weightgoal}" class="weight"></span>
-                                <form id="new-weight">
-                                    <input class="weight-input" type="number" placeholder="edit weight">
+                                <form action="/new-weight" method="post" id="new-weight">
+                                    <input class="weight-input" name="newweight" type="number" placeholder="edit weight">
                                     <button class="addWeight">Add weight</button>
                                 </form>
                             </div>
@@ -399,8 +399,8 @@
                             <span class="text">Kilojoules</span>
                             <div class="edit-grams">
                                 <span th:text="${kilojoules}" class="weight"> 11200 Kj per day</span>
-                                <form id="new-grams">
-                                    <input class="weight-input" type="number" placeholder="edit grams">
+                                <form action="/new-kilojoules" method="post" id="new-grams">
+                                    <input class="weight-input" name="newkilojoules" type="number" placeholder="edit grams">
                                     <button class="addWeight">Add grams</button>
                                 </form>
                             </div>
@@ -409,8 +409,8 @@
                             <span class="text">Carbohydrates</span>
                             <div class="edit-grams">
                                 <span th:text="${carbs}" class="weight"></span>
-                                <form id="new-grams">
-                                    <input class="weight-input" type="number" placeholder="edit grams">
+                                <form action="/new-carbs" method="post" id="new-grams">
+                                    <input class="weight-input" name="newcarbs" type="number" placeholder="edit grams">
                                     <button class="addWeight">Add grams</button>
                                 </form>
                             </div>
@@ -419,8 +419,8 @@
                             <span class="text">Protein</span>
                             <div class="edit-grams">
                                 <span th:text="${protein}" class="weight"></span>
-                                <form id="new-grams">
-                                    <input class="weight-input" type="number" placeholder="edit grams">
+                                <form action="/new-protein" method="post" id="new-grams">
+                                    <input class="weight-input" name="newprotein" type="number" placeholder="edit grams">
                                     <button class="addWeight">Add grams</button>
                                 </form>
                             </div>
@@ -429,8 +429,8 @@
                             <span class="text">Fats</span>
                             <div class="edit-grams">
                                 <span th:text="${fats}" class="weight"></span>
-                                <form id="new-grams">
-                                    <input class="weight-input" type="number" placeholder="edit grams">
+                                <form action="/new-fats" method="post" id="new-grams">
+                                    <input class="weight-input" name="newfats" type="number" placeholder="edit grams">
                                     <button class="addWeight">Add grams</button>
                                 </form>
                             </div>
@@ -468,19 +468,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Oats</td>
-                                    <td>300 Kj</td>
-                                    <td>70 g</td>
-                                    <td>25 g</td>
-                                    <td>15 g</td>
-                                </tr>
-                                <tr>
-                                    <td>Chicken Breast</td>
-                                    <td>300 Kj</td>
-                                    <td>70 g</td>
-                                    <td>25 g</td>
-                                    <td>15 g</td>
+                                <tr th:each="food: ${foods}">
+                                    <td th:text="${food.foodname}">Oats</td>
+                                    <td th:text="${food.kilojoules}">300 Kj</td>
+                                    <td th:text="${food.carbs}">70 g</td>
+                                    <td th:text="${food.protein}">25 g</td>
+                                    <td th:text="${food.fats}">15 g</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -490,22 +483,26 @@
                             <i class="uil uil-tachometer-fast-alt"></i>
                             <span class="text">Log Food Item</span>
                         </div>
-                        <form id="log-item" class="log-item">
+                        <form action="/log-item" method="post" id="log-item" class="log-item">
                             <div class="food-">
                                 <label for="foodname" class="text">Food Name</label>
-                                <input type="text" class="box" placeholder="e.g., Chicken">
+                                <input type="text" name="foodname" class="box" placeholder="e.g., Chicken">
+                            </div>
+                            <div class="food-">
+                                <label for="foodkilojoules" class="text">Kilojoules</label>
+                                <input type="number" name="kilojoules" class="box" placeholder="Kj per 100g">
                             </div>
                             <div class="food-">
                                 <label for="foodcarbs" class="text">Carbohydrates</label>
-                                <input type="number" class="box" placeholder="Carbs per 100g">
+                                <input type="number" name="carbs" class="box" placeholder="Carbs per 100g">
                             </div>
                             <div class="food-">
                                 <label for="foodprotein" class="text">Protein</label>
-                                <input type="number" class="box" placeholder="Protein per 100g">
+                                <input type="number" name="protein" class="box" placeholder="Protein per 100g">
                             </div>
                             <div class="food-">
                                 <label for="foodfats" class="text">Fats</label>
-                                <input type="number" class="box" placeholder="Fats per 100g">
+                                <input type="number" name="fats" class="box" placeholder="Fats per 100g">
                             </div>
                             <div class="food-button">
                                 <button type="submit" class="add-item">Add Food</button>
