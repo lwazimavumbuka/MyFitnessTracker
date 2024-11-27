@@ -239,11 +239,10 @@
                             <div class="meal-form">
                                 <div class="select-food">
                                     <label class="text" for="foodSelect">Select Food Item</label>
-                                    <select class="foodSelect" id="foodSelect">
+                                    <select th:each="food:${foods}" class="foodSelect" id="foodSelect">
                                         <option value="">--Select Food item--</option>
-                                        <option value="Oats">Oats</option>
-                                        <option value="Rice">Rice</option>
-                                        <option value="Chicken Breast">Chicken Breast</option>
+                                        <option th:text="${food.foodname}"></option>
+                                       
                                     </select>
                                 </div>
                                 <div class="select-amount">
@@ -256,6 +255,15 @@
                             </div>
                             <div class="add-items">
                                 <div class="mealitems" id="mealitems"></div>
+                                <div class="select-slot">
+                                    <select class="SlotSelect" id="SlotSelect">
+                                        <option value="">--Select Food MealSlot--</option>
+                                        <option value="Breakfast">Breakfast</option>
+                                        <option value="Lunch">Lunch</option>
+                                        <option value="Dinner">Dinner</option>
+                                        <option value="Snack">Snack</option>
+                                    </select>
+                                </div>
                                 <div class="mealbtn">
                                     <button onclick="addMeal()"> Add Meal</button>
                                 </div>
@@ -552,12 +560,32 @@
             
             let currentMealItems = [];
 
-            function addFoodItem() {
-                const foodSelect = document.getElementById("foodSelect");
-                const foodAmount = document.getElementById("foodAmount");
+            let currentMeal = {
+                mealSlot: "",
+                fooditems: []
+            };
 
-                if (foodSelect.value && foodAmount.value) {
-                    currentMealItems.push({ item: foodSelect.value, amount: foodAmount.value });
+            function addFoodItem() {
+                const slotSelect = document.getElementById("SlotSelect");
+                const foodSelect = document.getElementById("foodSelect").value;
+                const foodAmount = document.getElementById("foodAmount").value;
+
+                const selectedSlot = slotSelect.value; // Get selected slot value
+
+                if (!selectedSlot) {
+                    alert("Please select a meal slot."); // Ensure slot is selected
+                    return;
+                }
+
+                if (foodSelect && foodAmount) {
+                    currentMealItems.push({ item: foodSelect, amount: foodAmount });
+                    
+                    currentMeal.mealSlot = selectedSlot;
+                    currentMeal.fooditems.push({
+                        foodSelect,
+                        foodAmount
+                    });
+                    
                     foodSelect.value = "";
                     foodAmount.value = "";
                     displayMealItems();
@@ -586,26 +614,78 @@
                 displayMealItems();
             }
             function addMeal() {
-                if (currentMealItems.length === 0) {
-                    alert("No food items added to meal.");
+                const slotSelect = document.getElementById("SlotSelect");
+                const selectedSlot = slotSelect.value; // Get selected slot value
+
+                if (!selectedSlot) {
+                    alert("Please select a meal slot."); // Ensure slot is selected
                     return;
                 }
 
-                const mealListDiv = document.getElementById("mealList");
-                const mealDiv = document.createElement("div");
+                if (currentMealItems.length === 0) {
+                    alert("No food items added to the meal."); // Ensure there are items in the meal
+                    return;
+                }
 
-                currentMealItems.forEach(food => {
-                    const foodDiv = document.createElement("div");
-                    foodDiv.textContent = `${food.item}: ${food.amount}g`;
-                    mealDiv.appendChild(foodDiv);
-                });
+                //here i am sending meal data to the backend
+                const mealData = {
+                    mealSlot: currentMeal.mealSlot,
+                    fooditems: currentMeal.fooditems
+                }
 
-                mealDiv.classList.add("meal-entry");
-                mealListDiv.appendChild(mealDiv);
+                fetch("api/meals/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(mealData),                    
+                })
+                    .then(response => {
+                        fetchMeals()
+                    });
 
+                
+                // Clear the current meal items and reset inputs
+                currentMeal = {
+                    mealSlot: "",
+                    fooditems: []
+                };
                 currentMealItems = [];
-                displayMealItems();
+                displayMealItems(); // Refresh displayed meal items
+                slotSelect.value = ""; // Reset slot dropdown
             }
+
+            function fetchMeals() {
+                fetch("api/meals/fetch")
+                    .then(response => response.json())
+                    .then(meals => {
+                        displayMeals(meals);
+                    })
+            }
+
+            function displayMeals(meals) {
+                const mealListDiv = document.getElementById("mealList");
+                mealListDiv.innerHTML = "";
+
+                meals.forEach(meal => {
+                    const mealDiv = document.createElement("div");
+                    mealDiv.classList.add("meal-entry");
+
+                    const mealSlotHeader = document.createElement("h3");
+                    mealSlotHeader.textContent = meal.mealSlot;
+                    mealDiv.appendChild(mealSlotHeader);
+
+                    meal.fooditems.forEach(food => {
+                        const foodDiv = document.createElement("div");
+                        foodDiv.textContent = `${food.foodSelect}: ${food.foodAmount}g`;
+                        mealDiv.appendChild(foodDiv);
+                    });
+
+                    mealListDiv.appendChild(mealDiv);
+                });
+            }
+
+
             //adding workouts
             let currentWorkout = {
                 split: "",
@@ -650,39 +730,94 @@
                 });
             }
 
-            function addWorkout(){
-                if(currentWorkout.exercises.length === 0){
+            function addWorkout() {
+                if (currentWorkout.exercises.length === 0) {
                     alert("No exercises added to the workout.");
                     return;
                 }
-                workoutList.push(currentWorkout);
 
-                currentWorkout = {
-                    split:"",
-                    exercises: []
+                // Prepare the data to send
+                const workoutData = {
+                    split: currentWorkout.split,
+                    exercises: currentWorkout.exercises,
                 };
-                document.getElementById("splitName").value = "";
 
-                displayWorkoutList();
+                // Send the data to the backend using fetch
+                fetch("api/workouts/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(workoutData),
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Failed to save workout");
+                        }
+                        return response.text();
+                    })
+                    .then(message => {
+                        console.log(message);
 
-                document.getElementById("exerciseList").innerHTML = "";
+                        // Reset the current workout (ready for new workout)
+                        currentWorkout = {
+                            split: "",
+                            exercises: [],
+                        };
+
+                        // Clear input fields
+                        document.getElementById("splitName").value = "";
+                        document.getElementById("exerciseList").innerHTML = "";
+
+                        // Fetch and display the updated workout list
+                        fetchAndDisplayWorkouts();
+                    })
+                    .catch(error => {
+                        console.error("Error saving workout:", error);
+                    });
             }
 
-            function displayWorkoutList(){
+            function displayWorkoutList() {
+                // Clear the current display
                 const historyDiv = document.getElementById("workoutList");
                 historyDiv.innerHTML = "";
-                workoutList.forEach((workout, index) => {
-                    const workoutDiv = document.createElement("div");
-                    workoutDiv.innerHTML = `<h4>${workout.split}</h4>`;
-                    workout.exercises.forEach(exercise => {
-                        const exerciseDiv = document.createElement("div");
-                        exerciseDiv.textContent = `${exercise.exerciseName} - ${exercise.muscleGroup}, ${exercise.sets} sets x ${exercise.reps} reps`;
-                        workoutDiv.appendChild(exerciseDiv);
-                    });
-                    historyDiv.appendChild(workoutDiv);
-                });
 
+                // Fetch workouts from the server
+                fetch('/api/workouts')
+                    .then(response => response.json())  // Parse the JSON response
+                    .then(workouts => {
+                        workouts.forEach(workout => {
+                            const workoutDiv = document.createElement("div");
+                            workoutDiv.innerHTML = `<h4>${workout.split}</h4>`;
+                            workout.exercises.forEach(exercise => {
+                                const exerciseDiv = document.createElement("div");
+                                exerciseDiv.textContent = `${exercise.exerciseName} - ${exercise.muscleGroup}, ${exercise.sets} sets x ${exercise.reps} reps`;
+                                workoutDiv.appendChild(exerciseDiv);
+                            });
+                            historyDiv.appendChild(workoutDiv);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching workouts:', error);
+                    });
             }
+
+            window.onload = function() {
+                fetchAndDisplayWorkouts();
+                fetchMeals();
+            };
+
+            function fetchAndDisplayWorkouts() {
+                fetch("api/workouts/all")
+                    .then(response => response.json())
+                    .then(data => {
+                        workoutList = data; // Assume workoutList is globally declared
+                        displayWorkoutList();
+                    })
+                    .catch(error => console.error("Error fetching workouts:", error));
+            }
+
+
             
         </script>
         <script src="script.js"></script>
