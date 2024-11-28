@@ -95,7 +95,7 @@
                                 <div class="skill">
                                     <div class="outer">
                                         <div class="inner">
-                                            <div id="number">
+                                            <div th:text="${goalkilojoules}" id="number">
                                                 
                                             </div>
                                         </div>
@@ -119,17 +119,26 @@
                                 </div>
                                 <div class="mymacros-text">
                                     <div class="mymacros">
-                                        <li><span>Protein</span>
+                                        <li>
+                                            <div class="remaining">
+                                                <span>Protein</span>
+                                            </div>
                                             <span class="bar">
                                                 <span class="protein"></span>
                                             </span>
                                         </li>
-                                        <li><span>Carbohydrates</span>
+                                        <li>
+                                            <div class="remaining">
+                                                <span>Carbohydrates</span>
+                                            </div>
                                             <span class="bar">
                                                 <span class="carbs"></span>
                                             </span>
                                         </li>
-                                        <li><span>Fats</span>
+                                        <li>
+                                            <div class="remaining">
+                                                <span>Fats</span>   
+                                            </div>
                                             <span class="bar">
                                                 <span class="fats"></span>
                                             </span>
@@ -191,8 +200,14 @@
                                         <option value="">DONE</option>
                                     </select>
                                 </div>
+                                
                                 <div th:each="todayMeal: ${todayMeals}" class="workout">
-                                    <span th:text="${todayMeal.name}" class="text"></span>
+                                    <style>
+                                        .text2 {
+                                          font-weight: bold;
+                                        }
+                                      </style>
+                                    <span th:text="${todayMeal.name}" class="text2"></span>
                                     <div class="split">
                                         <ul class="split-name">
                                             <pre th:text="${todayMeal.fooditems}" class="muscle">300 g Rice</pre>
@@ -200,7 +215,7 @@
                                     </div>
                                     <ul>
                                         <span class="Totals"><strong>Meal's Macros</strong></span><br>
-                                        <pre th:text="${todayMeal.macros}" class="Totals"></pre><br>
+                                        <pre th:text="${todayMeal.macros}" class="Totals"></pre>
                                         
                                     </ul>
                                     <div class="buttons">
@@ -402,7 +417,7 @@
                         <div class="weight-box">
                             <span class="text">Kilojoules</span>
                             <div class="edit-grams">
-                                <span th:text="${kilojoules}" class="weight"> 11200 Kj per day</span>
+                                <span th:text="${goalkilojoules}" class="weight"> 11200 Kj per day</span>
                                 <form action="/new-kilojoules" method="post" id="new-grams">
                                     <input class="weight-input" name="newkilojoules" type="number" placeholder="edit grams">
                                     <button class="addWeight">Add grams</button>
@@ -542,17 +557,20 @@
                     }
                 }
             });
-            let number = document.getElementById("number");
-            let counter = 0;
-            setInterval(() => {
-	            if(counter == 11200){
-		            clearInterval();
-	            }else{
-		            counter += 100;
-		            number.innerHTML = counter + " Kj";
-		        }
-            }, 50);
 
+            let numberElement = document.getElementById("number");
+            let goalKilojoules = parseInt(numberElement.innerHTML, 10); 
+            let counter = 0;
+
+            let interval = setInterval(() => {
+                if (counter >= goalKilojoules) { 
+                    clearInterval(interval);
+                } else {
+                    counter += 100; 
+                    if (counter > goalKilojoules) counter = goalKilojoules; 
+                    numberElement.innerHTML = counter + " Kj"; 
+                }
+            }, 50);
             
             let currentMealItems = [];
 

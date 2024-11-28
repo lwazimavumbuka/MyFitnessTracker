@@ -437,6 +437,9 @@ nav.close ~ .dashboard .top{
     margin-bottom: 20px;
 }
 .column .text{
+    font-weight: bold;
+}
+.column .text{
     white-space: nowrap;
     font-size: 18px;
     font-weight: 500;

@@ -41,7 +41,7 @@ public class DashboardController {
         
         model.addAttribute("currentweight", usergoals.get().getCurrentweight()+"kg");
         model.addAttribute("weightgoal", usergoals.get().getWeightgoal()+"kg");
-        model.addAttribute("kilojoules", usergoals.get().getKilojoules()+"kj per day");
+        model.addAttribute("goalkilojoules", usergoals.get().getKilojoules()+"kj per day");
         model.addAttribute("protein", usergoals.get().getProtein()+"g per day");
         model.addAttribute("carbs", usergoals.get().getCarbs()+"g per day");
         model.addAttribute("fats", usergoals.get().getFats()+"g per day");
