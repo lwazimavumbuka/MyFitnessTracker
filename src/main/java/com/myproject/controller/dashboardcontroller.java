@@ -1,5 +1,6 @@
 package com.myproject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,10 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.myproject.model.FoodItem;
 import com.myproject.model.Foods;
 import com.myproject.model.Goals;
+import com.myproject.model.Meal;
+import com.myproject.model.TodayMeal;
 import com.myproject.repository.FoodsRepo;
 import com.myproject.repository.GoalsRepo;
+import com.myproject.repository.MealRepo;
 
 @Controller
 public class DashboardController {
@@ -24,6 +29,9 @@ public class DashboardController {
     @Autowired
     private FoodsRepo foodsRepo;
     
+    @Autowired
+    private MealRepo mealRepo;
+
     private String usernameString;
     
     @GetMapping("/dashboard")
@@ -40,6 +48,38 @@ public class DashboardController {
 
         List<Foods> foods = foodsRepo.findAll();
         model.addAttribute("foods", foods);
+
+
+        //List Today Meals
+        List<Meal> meals = mealRepo.findAll();
+
+        List<TodayMeal> todayMeals = new ArrayList<>();
+
+        for(Meal meal: meals){
+            TodayMeal todayMeal = new TodayMeal();
+            todayMeal.setName(meal.getMealSlot());
+            todayMeal.setFooditems(meal.toString().replace("[", "").replace("]", "").replace(", ", ""));
+            todayMeals.add(todayMeal);    
+            System.out.println(todayMeal.toString());
+
+            // here i am calculating the macros for todays meal
+            int mealKj =0 , mealProtein = 0, mealcarbs = 0, mealfats = 0;
+
+            List<FoodItem> todayItems =  meal.getFooditems();
+
+            for(FoodItem fooditem: todayItems){
+                List<Foods> food = foodsRepo.findByFoodname(fooditem.getFoodSelect());
+                int amount = Integer.parseInt(fooditem.getFoodAmount())/100;
+                mealKj += amount*food.get(0).getKilojoules();
+                mealProtein += amount*food.get(0).getProtein();
+                mealcarbs += amount*food.get(0).getCarbs();
+                mealfats += amount*food.get(0).getFats();   
+            }
+            todayMeal.setMacros(todayMeal.macroString(mealKj, mealProtein, mealcarbs, mealfats));
+            
+        }
+        model.addAttribute("todayMeals",todayMeals);
+
 
         return "dashboard";
     }

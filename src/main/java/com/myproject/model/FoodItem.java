@@ -1,5 +1,7 @@
 package com.myproject.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 
 @Entity
 @Table(name="fooditem")
@@ -24,6 +27,7 @@ public class FoodItem {
 
     @ManyToOne
     @JoinColumn(name="meal_id")
+    @JsonBackReference
     private Meal meal;
 
     public String getFoodSelect() {
@@ -44,7 +48,7 @@ public class FoodItem {
 
     @Override
     public String toString() {
-        return "FoodItem [foodSelect=" + foodSelect + ", foodAmount=" + foodAmount + "]";
+        return foodAmount + "g of " + foodSelect+"\n";
     }
 
     public Meal getMeal() {

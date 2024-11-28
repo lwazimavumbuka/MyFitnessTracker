@@ -191,21 +191,17 @@
                                         <option value="">DONE</option>
                                     </select>
                                 </div>
-                                <div class="workout">
-                                    <span class="text"><strong>BREAKFAST</strong></span>
+                                <div th:each="todayMeal: ${todayMeals}" class="workout">
+                                    <span th:text="${todayMeal.name}" class="text"></span>
                                     <div class="split">
                                         <ul class="split-name">
-                                            <span class="muscle">300 g Rice</span><br>
-                                            <span class="muscle">150 g Chicken Breast</span><br>
-                                            <span class="nuscle">100 g Broccoli</span><br>
+                                            <pre th:text="${todayMeal.fooditems}" class="muscle">300 g Rice</pre>
                                         </ul>
                                     </div>
                                     <ul>
                                         <span class="Totals"><strong>Meal's Macros</strong></span><br>
-                                        <span class="Totals">Kilojoules: 3600Kj</span><br>
-                                        <span class="Totals">Protein: 139g</span><br>
-                                        <span class="Totals">Carbohydrates: 400g</span><br>
-                                        <span class="Totals">Fats: 20g</span><br>
+                                        <pre th:text="${todayMeal.macros}" class="Totals"></pre><br>
+                                        
                                     </ul>
                                     <div class="buttons">
                                         <a href="#" class="btn">Confirm</a>
@@ -630,8 +626,12 @@
                 //here i am sending meal data to the backend
                 const mealData = {
                     mealSlot: currentMeal.mealSlot,
-                    fooditems: currentMeal.fooditems
-                }
+                    fooditems: currentMeal.fooditems.map(item => ({
+                        foodSelect: item.foodSelect,
+                        foodAmount: item.foodAmount
+                    }))
+                };
+
 
                 fetch("api/meals/submit", {
                     method: "POST",
