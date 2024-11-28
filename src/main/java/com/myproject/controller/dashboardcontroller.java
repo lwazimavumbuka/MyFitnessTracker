@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.myproject.model.FoodItem;
 import com.myproject.model.Foods;
 import com.myproject.model.Goals;
+import com.myproject.model.MacrosRemaining;
 import com.myproject.model.Meal;
 import com.myproject.model.TodayMeal;
 import com.myproject.repository.FoodsRepo;
 import com.myproject.repository.GoalsRepo;
+import com.myproject.repository.MacrosRemainingRepo;
 import com.myproject.repository.MealRepo;
 
 @Controller
@@ -34,10 +36,21 @@ public class DashboardController {
 
     private String usernameString;
     
+    private List<TodayMeal> todayMeals;
+
+    @Autowired
+    private MacrosRemainingRepo macrosRemainingRepo;
+
     @GetMapping("/dashboard")
     public String dashboard(@RequestParam("username") String username, Model model){
         usernameString = username;
         Optional<Goals> usergoals = goalsRepo.findById(username);
+        Optional<MacrosRemaining> macrosRemaining = macrosRemainingRepo.findById(1);
+
+        model.addAttribute("remainingKJ", macrosRemaining.get().getKilojoules());
+        model.addAttribute("remainingProtein", macrosRemaining.get().getProtein()+"g");
+        model.addAttribute("remainingCarbs", macrosRemaining.get().getCarbs()+"g");
+        model.addAttribute("remainingFats", macrosRemaining.get().getFats()+"g");
         
         model.addAttribute("currentweight", usergoals.get().getCurrentweight()+"kg");
         model.addAttribute("weightgoal", usergoals.get().getWeightgoal()+"kg");
@@ -53,14 +66,13 @@ public class DashboardController {
         //List Today Meals
         List<Meal> meals = mealRepo.findAll();
 
-        List<TodayMeal> todayMeals = new ArrayList<>();
+        todayMeals = new ArrayList<>();
 
         for(Meal meal: meals){
             TodayMeal todayMeal = new TodayMeal();
             todayMeal.setName(meal.getMealSlot());
             todayMeal.setFooditems(meal.toString().replace("[", "").replace("]", "").replace(", ", ""));
-            todayMeals.add(todayMeal);    
-            System.out.println(todayMeal.toString());
+     //       System.out.println(todayMeal.toString());
 
             // here i am calculating the macros for todays meal
             int mealKj =0 , mealProtein = 0, mealcarbs = 0, mealfats = 0;
@@ -75,13 +87,39 @@ public class DashboardController {
                 mealcarbs += amount*food.get(0).getCarbs();
                 mealfats += amount*food.get(0).getFats();   
             }
+            todayMeal.setKj(mealKj);
+            todayMeal.setPrtn(mealProtein);
+            todayMeal.setCrbs(mealcarbs);
+            todayMeal.setFts(mealfats);
             todayMeal.setMacros(todayMeal.macroString(mealKj, mealProtein, mealcarbs, mealfats));
+            todayMeals.add(todayMeal);    
             
         }
         model.addAttribute("todayMeals",todayMeals);
 
 
         return "dashboard";
+    }
+    
+    @PostMapping("/confirmMeal")
+    public String confirmMeal(@RequestParam("mealName") String mealname){
+        Optional<MacrosRemaining> macrosremaining = macrosRemainingRepo.findById(1);
+        System.out.println(mealname);
+        for(int i = 0; i < todayMeals.size(); i++){
+            if(todayMeals.get(i).getName().equals(mealname)){
+                macrosremaining.get().setCarbs(macrosremaining.get().getCarbs()-todayMeals.get(i).getCrbs());
+                macrosremaining.get().setFats(macrosremaining.get().getFats()-todayMeals.get(i).getFts());
+                macrosremaining.get().setKilojoules(macrosremaining.get().getKilojoules()-todayMeals.get(i).getKj());
+                macrosremaining.get().setProtein(macrosremaining.get().getProtein()-todayMeals.get(i).getPrtn());
+                macrosRemainingRepo.save(macrosremaining.get());
+                todayMeals.remove(i);
+                break;
+                //System.out.println(confirmedMeal.getMacros());
+                
+            }
+            
+        }
+        return "redirect:/dashboard?username="+usernameString;
     }
     
     @PostMapping("/edit-currentweight")
@@ -103,7 +141,9 @@ public class DashboardController {
     @PostMapping("/new-kilojoules")
     public String editKilojoules(@RequestParam("newkilojoules") int newkilojoules){
         Optional<Goals> usergoals = goalsRepo.findById(usernameString);
+        Optional<MacrosRemaining> macrosRemaining = macrosRemainingRepo.findById(1);
         usergoals.get().setKilojoules(newkilojoules);
+        macrosRemaining.get().setKilojoules(newkilojoules);
         goalsRepo.save(usergoals.get());
         return "redirect:/dashboard?username="+usernameString;
     }
@@ -111,6 +151,8 @@ public class DashboardController {
     @PostMapping("/new-carbs")
     public String editCarbs(@RequestParam("newcarbs") int newcarbs){
         Optional<Goals> usergoals = goalsRepo.findById(usernameString);
+        Optional<MacrosRemaining> macrosRemaining = macrosRemainingRepo.findById(1);
+        macrosRemaining.get().setCarbs(newcarbs);
         usergoals.get().setCarbs(newcarbs);
         goalsRepo.save(usergoals.get());
         return "redirect:/dashboard?username="+usernameString;
@@ -119,6 +161,8 @@ public class DashboardController {
     @PostMapping("new-protein")
     public String editProtein(@RequestParam("newprotein") int newprotein){
         Optional<Goals> usergoals = goalsRepo.findById(usernameString);
+        Optional<MacrosRemaining> macrosRemaining = macrosRemainingRepo.findById(1);
+        macrosRemaining.get().setProtein(newprotein);
         usergoals.get().setProtein(newprotein);
         goalsRepo.save(usergoals.get());
         return "redirect:/dashboard?username="+usernameString;
@@ -127,6 +171,8 @@ public class DashboardController {
     @PostMapping("/new-fats")
     public String editFats(@RequestParam("newfats") int newfats){
         Optional<Goals> usergoals = goalsRepo.findById(usernameString);
+        Optional<MacrosRemaining> macrosRemaining = macrosRemainingRepo.findById(1);
+        macrosRemaining.get().setFats(newfats);
         usergoals.get().setFats(newfats);
         goalsRepo.save(usergoals.get());
         return "redirect:/dashboard?username="+usernameString;

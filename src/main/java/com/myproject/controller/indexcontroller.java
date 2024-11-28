@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myproject.model.Goals;
+import com.myproject.model.MacrosRemaining;
 import com.myproject.model.User;
-import com.myproject.repository.UserRepo;
 import com.myproject.repository.GoalsRepo;
+import com.myproject.repository.MacrosRemainingRepo;
+import com.myproject.repository.UserRepo;
 
 @Controller
 public class IndexController {
@@ -23,6 +25,8 @@ public class IndexController {
 
     @Autowired(required=true)
     private UserRepo userRepo;
+
+    private MacrosRemainingRepo macrosRemainingRepo;
 
     @GetMapping("/")
     public String index(){
@@ -63,6 +67,9 @@ public class IndexController {
         
         Goals goals = new Goals(username, currentweight, weightgoal, kilojoules, protein, carbs, fats);
         goalsRepo.save(goals);
+
+        MacrosRemaining macrosRemaining = new MacrosRemaining(kilojoules, protein, carbs, fats);
+        macrosRemainingRepo.save(macrosRemaining);
 
         System.out.println(user.toString());
 

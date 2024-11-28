@@ -355,6 +355,11 @@ nav.close ~ .dashboard .top{
     list-style-type: none;
     align-items: flex-start;
 }
+.dash-content .boxes .box .mymacros-text .mymacros li .remaining{
+    justify-content: space-between;
+    display: flex;
+
+}
 .dash-content .boxes .box .mymacros-text{
     /*I started here*/
     display: flex;

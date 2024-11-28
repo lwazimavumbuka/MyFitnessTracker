@@ -95,7 +95,7 @@
                                 <div class="skill">
                                     <div class="outer">
                                         <div class="inner">
-                                            <div th:text="${goalkilojoules}" id="number">
+                                            <div th:text="${remainingKJ}" id="number">
                                                 
                                             </div>
                                         </div>
@@ -122,6 +122,7 @@
                                         <li>
                                             <div class="remaining">
                                                 <span>Protein</span>
+                                                <span th:text="${remainingProtein}"></span>
                                             </div>
                                             <span class="bar">
                                                 <span class="protein"></span>
@@ -130,6 +131,7 @@
                                         <li>
                                             <div class="remaining">
                                                 <span>Carbohydrates</span>
+                                                <span th:text="${remainingCarbs}"></span>
                                             </div>
                                             <span class="bar">
                                                 <span class="carbs"></span>
@@ -137,7 +139,8 @@
                                         </li>
                                         <li>
                                             <div class="remaining">
-                                                <span>Fats</span>   
+                                                <span>Fats</span>
+                                                <span th:text="${remainingFats}"></span> 
                                             </div>
                                             <span class="bar">
                                                 <span class="fats"></span>
@@ -206,22 +209,25 @@
                                         .text2 {
                                           font-weight: bold;
                                         }
-                                      </style>
-                                    <span th:text="${todayMeal.name}" class="text2"></span>
-                                    <div class="split">
-                                        <ul class="split-name">
-                                            <pre th:text="${todayMeal.fooditems}" class="muscle">300 g Rice</pre>
+                                    </style>
+                                    <form th:action="@{/confirmMeal}" method="post">
+                                        <span th:text="${todayMeal.name}" class="text2"></span>
+                                        <input type="hidden" th:name="mealName" th:value="${todayMeal.name}"/>
+                                        <div class="split">
+                                            <ul class="split-name">
+                                                <pre th:text="${todayMeal.fooditems}" class="muscle">300 g Rice</pre>
+                                            </ul>
+                                        </div>
+                                        <ul>
+                                            <span class="Totals"><strong>Meal's Macros</strong></span><br>
+                                            <pre th:text="${todayMeal.macros}" class="Totals"></pre>
+                                            
                                         </ul>
-                                    </div>
-                                    <ul>
-                                        <span class="Totals"><strong>Meal's Macros</strong></span><br>
-                                        <pre th:text="${todayMeal.macros}" class="Totals"></pre>
-                                        
-                                    </ul>
-                                    <div class="buttons">
-                                        <a href="#" class="btn">Confirm</a>
-                                        <a href="#" class="btn">View</a>
-                                    </div>
+                                        <div class="buttons">
+                                            <button type="submit" class="btn">Confirm</button>
+                                            <a href="#" class="btn">View</a>
+                                        </div>
+                                    </form>
                             </div>
                         </div>
                     </div>
@@ -559,15 +565,15 @@
             });
 
             let numberElement = document.getElementById("number");
-            let goalKilojoules = parseInt(numberElement.innerHTML, 10); 
+            let remainingKJ = parseInt(numberElement.innerHTML, 10); 
             let counter = 0;
 
             let interval = setInterval(() => {
-                if (counter >= goalKilojoules) { 
+                if (counter >= remainingKJ) { 
                     clearInterval(interval);
                 } else {
-                    counter += 100; 
-                    if (counter > goalKilojoules) counter = goalKilojoules; 
+                    counter += 300; 
+                    if (counter > remainingKJ) counter = remainingKJ; 
                     numberElement.innerHTML = counter + " Kj"; 
                 }
             }, 50);
