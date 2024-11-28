@@ -23,6 +23,7 @@ public class MealController {
     @GetMapping("/fetch")
     public ResponseEntity<List<Meal>> fetchMeals(){
         List<Meal> meals = mealRepo.findAll();
+
         return ResponseEntity.ok(meals);
     }
 

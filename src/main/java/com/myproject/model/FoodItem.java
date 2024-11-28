@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +21,10 @@ public class FoodItem {
 
     @Column
     private String foodAmount;
+
+    @ManyToOne
+    @JoinColumn(name="meal_id")
+    private Meal meal;
 
     public String getFoodSelect() {
         return foodSelect;
@@ -39,6 +45,14 @@ public class FoodItem {
     @Override
     public String toString() {
         return "FoodItem [foodSelect=" + foodSelect + ", foodAmount=" + foodAmount + "]";
+    }
+
+    public Meal getMeal() {
+        return meal;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
     }
 
     
