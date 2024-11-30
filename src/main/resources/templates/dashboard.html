@@ -122,16 +122,18 @@
                                         <li>
                                             <div class="remaining">
                                                 <span>Protein</span>
-                                                <span th:text="${remainingProtein}"></span>
+                                                <span th:text="${remainingProtein}" id="remainingProtein"></span>
                                             </div>
-                                            <span class="bar">
-                                                <span class="protein"></span>
-                                            </span>
+                                            <div class="proteinBar">
+                                                <span class="bar">
+                                                    <span class="protein"></span>
+                                                </span>
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="remaining">
                                                 <span>Carbohydrates</span>
-                                                <span th:text="${remainingCarbs}"></span>
+                                                <span th:text="${remainingCarbs}" id="remainingCarbs"></span>
                                             </div>
                                             <span class="bar">
                                                 <span class="carbs"></span>
@@ -140,7 +142,7 @@
                                         <li>
                                             <div class="remaining">
                                                 <span>Fats</span>
-                                                <span th:text="${remainingFats}"></span> 
+                                                <span th:text="${remainingFats}" id="remainingFats"></span> 
                                             </div>
                                             <span class="bar">
                                                 <span class="fats"></span>
@@ -423,7 +425,7 @@
                         <div class="weight-box">
                             <span class="text">Kilojoules</span>
                             <div class="edit-grams">
-                                <span th:text="${goalkilojoules}" class="weight"> 11200 Kj per day</span>
+                                <span th:text="${goalkilojoules}" id="goalkilojoules" class="weight"> 11200 Kj per day</span>
                                 <form action="/new-kilojoules" method="post" id="new-grams">
                                     <input class="weight-input" name="newkilojoules" type="number" placeholder="edit grams">
                                     <button class="addWeight">Add grams</button>
@@ -433,7 +435,7 @@
                         <div class="weight-box">
                             <span class="text">Carbohydrates</span>
                             <div class="edit-grams">
-                                <span th:text="${carbs}" class="weight"></span>
+                                <span th:text="${carbs}" id="goalcarbs" class="weight"></span>
                                 <form action="/new-carbs" method="post" id="new-grams">
                                     <input class="weight-input" name="newcarbs" type="number" placeholder="edit grams">
                                     <button class="addWeight">Add grams</button>
@@ -443,8 +445,8 @@
                         <div class="weight-box">
                             <span class="text">Protein</span>
                             <div class="edit-grams">
-                                <span th:text="${protein}" class="weight"></span>
-                                <form action="/new-protein" method="post" id="new-grams">
+                                <span th:text="${protein}" id="goalprotein" class="weight"></span>
+                                <form action="/new-protein"  method="post" id="new-grams">
                                     <input class="weight-input" name="newprotein" type="number" placeholder="edit grams">
                                     <button class="addWeight">Add grams</button>
                                 </form>
@@ -453,7 +455,7 @@
                         <div class="weight-box">
                             <span class="text">Fats</span>
                             <div class="edit-grams">
-                                <span th:text="${fats}" class="weight"></span>
+                                <span th:text="${fats}" id="goalfats" class="weight"></span>
                                 <form action="/new-fats" method="post" id="new-grams">
                                     <input class="weight-input" name="newfats" type="number" placeholder="edit grams">
                                     <button class="addWeight">Add grams</button>
@@ -542,6 +544,7 @@
 
 
         <script>
+            //Nav Menu
             const sections = {
                 dashboard: document.getElementById("dashboard-section"),
                 meals: document.getElementById("meals-section"),
@@ -564,6 +567,8 @@
                 }
             });
 
+            // Remaining kilojooules animation
+
             let numberElement = document.getElementById("number");
             let remainingKJ = parseInt(numberElement.innerHTML, 10); 
             let counter = 0;
@@ -584,6 +589,82 @@
                 mealSlot: "",
                 fooditems: []
             };
+
+            // progress animation
+
+            // Fetch backend values
+            const remainingKjElement = document.getElementById("number");
+            const goalKilojouleElement = document.getElementById("goalkilojoules");
+
+            const remainingProteinElement = document.getElementById("remainingProtein");
+            const goalProteinElement = document.getElementById("goalprotein");
+
+            const remainingCarbsElement = document.getElementById("remainingCarbs");
+            const goalCarbsElement = document.getElementById("goalcarbs");
+
+            const remainingFatsElement = document.getElementById("remainingFats");
+            const goalFatsElement = document.getElementById("goalfats");
+
+            
+
+            // Parse values from the backend
+            const remainingKj = parseFloat(remainingKjElement.textContent) || 0; // Default to 0 if missing
+            const goalKilojoule = parseFloat(goalKilojouleElement.textContent) || 1; // Avoid division by zero
+
+            const remainingProtein = parseFloat(remainingProteinElement.textContent) || 0;
+            const goalProtein = parseFloat(goalProteinElement.textContent) || 1;
+
+            const remainingCarbs = parseFloat(remainingCarbsElement.textContent) || 0;
+            const goalCarbs = parseFloat(goalCarbsElement.textContent) || 1;
+
+            const remainingFats = parseFloat(remainingFatsElement.textContent) || 0;
+            const goalFats = parseFloat(goalFatsElement.textContent) || 1;
+
+            // Select the progress bar and the number display
+            const progressCircle = document.querySelector(".skill svg circle");
+            const numberDisplay = document.getElementById("number");
+
+            const progressBarProtein = document.querySelector(".dash-content .boxes .box .mymacros-text .mymacros .bar .protein");
+            const proteinNumber = document.getElementById("remainingProtein");
+
+            const progressBarCarbs = document.querySelector(".dash-content .boxes .box .mymacros-text .mymacros .bar .carbs");
+            const carbsNumber = document.getElementById("remainingCarbs");
+
+            const progressBarFats = document.querySelector(".dash-content .boxes .box .mymacros-text .mymacros .bar .fats");
+            const fatsNumber = document.getElementById("remainingFats");
+
+            // Update progress dynamically
+            function updateProgress(remainingKj, goalKj, remainingPr, goalPr, remainingCrb, goalCrb, remainingFts, goalFts) {
+                const circumference = 2 * Math.PI * 50; // Circumference of circle (r=50)
+                const progress = Math.max(0, (goalKj - remainingKj) / goalKj); // Calculate progress percentage
+
+                const proteinprogress = Math.max(0, (goalPr - remainingPr) / goalPr);
+
+                const carbsprogress = Math.max(0, (goalCrb - remainingCrb) / goalCrb);
+
+                const fatsprogress = Math.max(0, (goalFts - remainingFts) / goalFts);
+
+                const offset = circumference * (1 - progress); // Calculate the stroke-dashoffset
+
+                // Apply the offset and update the number display
+                progressBarProtein.style.width = `${proteinprogress * 100}%`;
+                proteinNumber.textContent = `${Math.max(remainingPr, 0)}g`;
+
+                progressBarCarbs.style.width = `${carbsprogress * 100}%`;
+                carbsNumber.textContent = `${Math.max(remainingCrb, 0)}g`;
+
+                progressBarFats.style.width = `${fatsprogress * 100}%`;
+                fatsNumber.textContent = `${Math.max(remainingFts, 0)}g`;
+
+                progressCircle.style.strokeDashoffset = offset;
+                numberDisplay.textContent = `${Math.max(remainingKj, 0)} KJ`; // Avoid negative display
+            }
+
+          
+            // Initialize the progress bar
+            updateProgress(remainingKj, goalKilojoule, remainingProtein, goalProtein, remainingCarbs, goalCarbs, remainingFats, goalFats);
+
+            // adding food items
 
             function addFoodItem() {
                 const slotSelect = document.getElementById("SlotSelect");

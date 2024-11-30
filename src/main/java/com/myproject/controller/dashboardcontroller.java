@@ -48,7 +48,7 @@ public class DashboardController {
         Optional<MacrosRemaining> macrosRemaining = macrosRemainingRepo.findById(1);
 
         model.addAttribute("remainingKJ", macrosRemaining.get().getKilojoules());
-        model.addAttribute("remainingProtein", macrosRemaining.get().getProtein()+"g");
+        model.addAttribute("remainingProtein", macrosRemaining.get().getProtein());
         model.addAttribute("remainingCarbs", macrosRemaining.get().getCarbs()+"g");
         model.addAttribute("remainingFats", macrosRemaining.get().getFats()+"g");
         
@@ -75,13 +75,13 @@ public class DashboardController {
      //       System.out.println(todayMeal.toString());
 
             // here i am calculating the macros for todays meal
-            int mealKj =0 , mealProtein = 0, mealcarbs = 0, mealfats = 0;
+            long mealKj =0 , mealProtein = 0, mealcarbs = 0, mealfats = 0;
 
             List<FoodItem> todayItems =  meal.getFooditems();
 
             for(FoodItem fooditem: todayItems){
                 List<Foods> food = foodsRepo.findByFoodname(fooditem.getFoodSelect());
-                int amount = Integer.parseInt(fooditem.getFoodAmount())/100;
+                long amount = fooditem.getFoodAmount()/100;
                 mealKj += amount*food.get(0).getKilojoules();
                 mealProtein += amount*food.get(0).getProtein();
                 mealcarbs += amount*food.get(0).getCarbs();
@@ -112,7 +112,12 @@ public class DashboardController {
                 macrosremaining.get().setKilojoules(macrosremaining.get().getKilojoules()-todayMeals.get(i).getKj());
                 macrosremaining.get().setProtein(macrosremaining.get().getProtein()-todayMeals.get(i).getPrtn());
                 macrosRemainingRepo.save(macrosremaining.get());
-                todayMeals.remove(i);
+               // todayMeals.remove(i);
+
+                List<Meal> meals = mealRepo.findByMealSlot(mealname);
+                for(Meal meal: meals){
+                    mealRepo.delete(meal);
+                }
                 break;
                 //System.out.println(confirmedMeal.getMacros());
                 

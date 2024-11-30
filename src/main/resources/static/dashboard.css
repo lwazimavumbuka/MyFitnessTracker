@@ -309,6 +309,7 @@ nav.close ~ .dashboard .top{
     width: 120px;
     border-radius: 50%;
     padding: 15px;
+    border: 1px solid var(--background2-color);
     /*box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15), -6px 6px 10px -1px rgba(255, 255, 255,0.7)*/
 }
 .dash-content .boxes .box .skill .inner{
@@ -318,6 +319,7 @@ nav.close ~ .dashboard .top{
     display: flex;
     align-items:  center;
     justify-content: center;
+    border: 1px solid var(--background2-color);
    /* box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
                     inset -4px 4px 6px -1px rgba(255,255,255,0.7),
                     -0.5px -0.5px 0px rgba(255,255,255,1),
@@ -328,12 +330,13 @@ nav.close ~ .dashboard .top{
     cx: 60;
     cy: 60;
     r: 50;
+    border: 1px solid var(--background2-color);
     fill: none;
     stroke: blue;
-    stroke-width: 15px;
-    stroke-dasharray: 439.82;
-    stroke-dashoffset: 439.82;
-    animation: anim 2s linear forwards;
+    stroke-width: 16px;
+    stroke-dasharray: 314.16; /* Circumference for r=50 */
+    stroke-dashoffset: 314.16; /* Start with the circle hidden */
+    transition: stroke-dashoffset 0.5s ease; /* Smooth progress animation */
 }
 .dash-content .boxes .box .skill svg{
     width: 120;
@@ -341,6 +344,7 @@ nav.close ~ .dashboard .top{
     position: absolute;
     top: 0;
     left: 0;
+
 }
 .dash-content .boxes .box .skill .inner .number{
    font-weight: 350;
@@ -387,40 +391,18 @@ nav.close ~ .dashboard .top{
     background: #0E4BF1;
 }
 .dash-content .boxes .box .mymacros-text .mymacros .bar .protein{
-    width: 90%;
-    animation: protein 3s;
+    width: 0%;
+    transition: width 3s ease; /* Smooth transition for dynamic updates */
 }
 .dash-content .boxes .box .mymacros-text .mymacros .bar .carbs{
-    width: 50%;
-    animation: carbs 3s;
+    width: 0%;
+    transition: width 3s ease; /* Smooth transition for dynamic updates */
 }
 .dash-content .boxes .box .mymacros-text .mymacros .bar .fats{
-    width: 30%;
-    animation: fats 3s;
+    width: 0%;
+    transition: width 3s ease; /* Smooth transition for dynamic updates */
 }
-@keyframes protein{
-    0%{
-        width: 0%;
-    }
-    100%{
-        width: 90%;
-    }
-}
-@keyframes carbs{
-    0%{
-        width: 0%;
-    }
-    100%{
-        width: 50%;
-    }
-}@keyframes fats{
-    0%{
-        width: 0%;
-    }
-    100%{
-        width: 30%;
-    }
-}
+
 .dash-content .activity .columns{
     display: flex;
     align-items: center;

@@ -19,16 +19,16 @@ public class Foods {
     private String foodname;
 
     @Column(name="kilojoules")
-    private int kilojoules;
+    private long kilojoules;
 
     @Column(name="carbs")
-    private int carbs;
+    private long carbs;
 
     @Column(name="protein")
-    private int protein;
+    private long protein;
 
     @Column(name="fats")
-    private int fats;
+    private long fats;
 
     
     @Override
@@ -38,7 +38,7 @@ public class Foods {
     }
     public Foods() {
     }
-    public Foods(String foodname, int kilojoules, int carbs, int protein, int fats) {
+    public Foods(String foodname, long kilojoules, long carbs, long protein, long fats) {
         this.foodname = foodname;
         this.kilojoules = kilojoules;
         this.carbs = carbs;
@@ -51,28 +51,28 @@ public class Foods {
     public void setFoodname(String foodname) {
         this.foodname = foodname;
     }
-    public int getKilojoules() {
+    public long getKilojoules() {
         return kilojoules;
     }
-    public void setKilojoules(int kilojoules) {
+    public void setKilojoules(long kilojoules) {
         this.kilojoules = kilojoules;
     }
-    public int getCarbs() {
+    public long  getCarbs() {
         return carbs;
     }
-    public void setCarbs(int carbs) {
+    public void setCarbs(long carbs) {
         this.carbs = carbs;
     }
-    public int getProtein() {
+    public long getProtein() {
         return protein;
     }
-    public void setProtein(int protein) {
+    public void setProtein(long protein) {
         this.protein = protein;
     }
-    public int getFats() {
+    public long getFats() {
         return fats;
     }
-    public void setFats(int fats) {
+    public void setFats(long fats) {
         this.fats = fats;
     }
 

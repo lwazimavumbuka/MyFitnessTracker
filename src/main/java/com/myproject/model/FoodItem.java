@@ -23,7 +23,7 @@ public class FoodItem {
     private String foodSelect;
 
     @Column
-    private String foodAmount;
+    private long  foodAmount;
 
     @ManyToOne
     @JoinColumn(name="meal_id")
@@ -38,11 +38,11 @@ public class FoodItem {
         this.foodSelect = foodSelect;
     }
 
-    public String getFoodAmount() {
+    public long getFoodAmount() {
         return foodAmount;
     }
 
-    public void setFoodAmount(String foodAmount) {
+    public void setFoodAmount(long foodAmount) {
         this.foodAmount = foodAmount;
     }
 

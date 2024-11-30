@@ -12,81 +12,96 @@ public class Goals {
     private String username;
 
     @Column(name="current_weight")
-    private int currentweight;
+    private long currentweight;
 
     @Column(name="weight_goal")
-    private int weightgoal;
+    private long weightgoal;
 
     @Column(name="kilojoules")
-    private int kilojoules;
+    private long kilojoules;
 
     @Column(name="protein")
-    private int protein;
+    private long protein;
 
     @Column(name="carbs")
-    private int carbs;
+    private long carbs;
 
     @Column(name="fats")
-    private int fats;
+    private long fats;
 
+
+    
+    public Goals(String username, long currentweight, long weightgoal, long kilojoules, long protein, long carbs,
+            long fats) {
+        this.username = username;
+        this.currentweight = currentweight;
+        this.weightgoal = weightgoal;
+        this.kilojoules = kilojoules;
+        this.protein = protein;
+        this.carbs = carbs;
+        this.fats = fats;
+    }
 
     public Goals() {
     }
-    public Goals(String username, int currentweight, int weightgoal, int kilojoules, int protein, int carbs, int fats) {
-        this.username = username;
-        this.currentweight = currentweight;
-        this.weightgoal = weightgoal;
-        this.kilojoules = kilojoules;
-        this.protein = protein;
-        this.carbs = carbs;
-        this.fats = fats;
-    }
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
-    public int getCurrentweight() {
+
+    public long getCurrentweight() {
         return currentweight;
     }
-    public void setCurrentweight(int currentweight) {
+
+    public void setCurrentweight(long currentweight) {
         this.currentweight = currentweight;
     }
-    public int getWeightgoal() {
+
+    public long getWeightgoal() {
         return weightgoal;
     }
-    public void setWeightgoal(int weightgoal) {
+
+    public void setWeightgoal(long weightgoal) {
         this.weightgoal = weightgoal;
     }
-    public int getKilojoules() {
+
+    public long getKilojoules() {
         return kilojoules;
     }
-    public void setKilojoules(int kilojoules) {
+
+    public void setKilojoules(long kilojoules) {
         this.kilojoules = kilojoules;
     }
-    public int getProtein() {
+
+    public long getProtein() {
         return protein;
     }
-    public void setProtein(int protein) {
+
+    public void setProtein(long protein) {
         this.protein = protein;
     }
-    public int getCarbs() {
+
+    public long getCarbs() {
         return carbs;
     }
-    public void setCarbs(int carbs) {
+
+    public void setCarbs(long carbs) {
         this.carbs = carbs;
     }
-    public int getFats() {
+
+    public long getFats() {
         return fats;
     }
-    public void setFats(int fats) {
+
+    public void setFats(long fats) {
         this.fats = fats;
     }
-    @Override
-    public String toString() {
-        return "Goals [username=" + username + ", currentweight=" + currentweight + ", weightgoal=" + weightgoal
-                + ", kilojoules=" + kilojoules + ", protein=" + protein + ", carbs=" + carbs + ", fats=" + fats + "]";
-    }
+
+
+    
     
 }

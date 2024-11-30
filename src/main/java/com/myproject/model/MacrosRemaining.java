@@ -16,50 +16,50 @@ public class MacrosRemaining {
     private int Id;
 
     @Column
-    private int kilojoules;
+    private long kilojoules;
 
     @Column
-    private int protein;
+    private long protein;
 
     @Column
-    private int carbs;
+    private long carbs;
 
     @Column
-    private int fats;
+    private long fats;
 
 
     
     public MacrosRemaining() {
     }
     
-    public MacrosRemaining(int kilojoules, int protein, int carbs, int fats) {
+    public MacrosRemaining(long kilojoules, long protein, long carbs, long fats) {
         this.kilojoules = kilojoules;
         this.protein = protein;
         this.carbs = carbs;
         this.fats = fats;
     }
-    public int getKilojoules() {
+    public long getKilojoules() {
         return kilojoules;
     }
-    public void setKilojoules(int kilojoules) {
+    public void setKilojoules(long kilojoules) {
         this.kilojoules = kilojoules;
     }
-    public int getProtein() {
+    public long getProtein() {
         return protein;
     }
-    public void setProtein(int protein) {
+    public void setProtein(long protein) {
         this.protein = protein;
     }
-    public int getCarbs() {
+    public long getCarbs() {
         return carbs;
     }
-    public void setCarbs(int carbs) {
+    public void setCarbs(long carbs) {
         this.carbs = carbs;
     }
-    public int getFats() {
+    public long getFats() {
         return fats;
     }
-    public void setFats(int fats) {
+    public void setFats(long fats) {
         this.fats = fats;
     }
 

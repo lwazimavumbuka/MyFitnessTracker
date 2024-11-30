@@ -26,6 +26,7 @@ public class IndexController {
     @Autowired(required=true)
     private UserRepo userRepo;
 
+    @Autowired
     private MacrosRemainingRepo macrosRemainingRepo;
 
     @GetMapping("/")
@@ -55,12 +56,12 @@ public class IndexController {
     @PostMapping("/registerform")
     public String register(@RequestParam("username") String username, 
                             @RequestParam("password") String password,
-                            @RequestParam("currentweight") int currentweight, 
-                            @RequestParam("weightgoal") int weightgoal,
-                            @RequestParam("kilojoules") int kilojoules,
-                            @RequestParam("protein") int protein,
-                            @RequestParam("carbs") int carbs,
-                            @RequestParam("fats") int fats){
+                            @RequestParam("currentweight") long currentweight, 
+                            @RequestParam("weightgoal") long weightgoal,
+                            @RequestParam("kilojoules") long kilojoules,
+                            @RequestParam("protein") long protein,
+                            @RequestParam("carbs") long carbs,
+                            @RequestParam("fats") long fats){
                                 
         User user = new User(username, password);
         userRepo.save(user);

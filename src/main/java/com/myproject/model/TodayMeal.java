@@ -5,10 +5,10 @@ public class TodayMeal {
     private String fooditems;
     private String macros;
 
-    private int kj;
-    private int prtn;
-    private int crbs;
-    private int fts;
+    private long kj;
+    private long prtn;
+    private long crbs;
+    private long fts;
 
     
     public TodayMeal() {
@@ -33,7 +33,7 @@ public class TodayMeal {
         this.macros = macros;
     }
 
-    public String macroString(int kj, int pr, int crbs, int fts){
+    public String macroString(long kj, long pr, long crbs, long fts){
         String macro = "Kilojoules: "+ kj +"\nProtein: "+ pr +"\nCarbohydrates: "+crbs+"\nFats: "+fts+"\n";
         this.macros = macro;
         return macro;
@@ -44,35 +44,35 @@ public class TodayMeal {
         return "TodayMeal [name=" + name + ", fooditems=" + fooditems + ", macros=" + "]";
     }
 
-    public int getKj() {
+    public long getKj() {
         return kj;
     }
 
-    public void setKj(int kj) {
+    public void setKj(long kj) {
         this.kj = kj;
     }
 
-    public int getPrtn() {
+    public long getPrtn() {
         return prtn;
     }
 
-    public void setPrtn(int prtn) {
+    public void setPrtn(long prtn) {
         this.prtn = prtn;
     }
 
-    public int getCrbs() {
+    public long getCrbs() {
         return crbs;
     }
 
-    public void setCrbs(int crbs) {
+    public void setCrbs(long crbs) {
         this.crbs = crbs;
     }
 
-    public int getFts() {
+    public long getFts() {
         return fts;
     }
 
-    public void setFts(int fts) {
+    public void setFts(long fts) {
         this.fts = fts;
     }
 
