@@ -1,4 +1,4 @@
-# My Fitness Tracker
+# My Fitness Tracker💪
 
 This is a personal project that I have started working on to help me achieve my fitness goals. My Fitness Tracker is a web application that helps me track my workouts and meals. In the app I will be able to journal and keep track of which exercise, weight and number of reps I have completed on that day.
 
